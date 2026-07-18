@@ -149,25 +149,6 @@
     pointer-events: none;
     overflow: hidden;
   }
-  .ethereal-image::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(to bottom, transparent 48%, rgba(34, 211, 238, 0.4) 50%, rgba(168, 85, 247, 0.4) 52%, transparent 54%);
-    animation: powerScan 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    mix-blend-mode: color-dodge;
-    pointer-events: none;
-    z-index: 10;
-  }
-  @keyframes powerScan {
-    0% { transform: translateY(-80%) rotate(30deg); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateY(80%) rotate(30deg); opacity: 0; }
-  }
   
   .ethereal-image img {
     width: 100%;
