@@ -169,18 +169,21 @@
         <div class="info-row"><div class="ic">💬</div><div><b>WhatsApp on request</b><small>Number shared once you reach out</small></div></div>
         <div class="info-row"><div class="ic">📍</div><div><b>India</b><small>Remote-first, serving clients worldwide</small></div></div>
       </div>
-      <div class="form-card reveal">
-        <div class="form-row"><div><label>Full Name</label><input type="text" placeholder="Your name"></div><div><label>Email Address</label><input type="email" placeholder="you@company.com"></div></div>
-        <div class="form-row"><div><label>Phone</label><input type="tel" placeholder="+91 00000 00000"></div><div><label>Company</label><input type="text" placeholder="Company name (optional)"></div></div>
-        <div class="form-row"><div><label>Project Type</label><select><option>Website</option><option>Web Application</option><option>Mobile App</option><option>AI Solution</option><option>Enterprise Software</option><option>Other</option></select></div><div><label>Budget Range</label><select><option>Under $1k</option><option>$1k – $5k</option><option>$5k – $15k</option><option>$15k+</option></select></div></div>
+      <form class="form-card reveal" name="contact" method="POST" data-netlify="true">
+        <div class="form-row"><div><label>Full Name</label><input type="text" name="name" placeholder="Your name" required></div><div><label>Email Address</label><input type="email" name="email" placeholder="you@company.com" required></div></div>
+        <div class="form-row"><div><label>Phone</label><input type="tel" name="phone" placeholder="+91 00000 00000"></div><div><label>Company</label><input type="text" name="company" placeholder="Company name (optional)"></div></div>
+        <div class="form-row"><div><label>Project Type</label><select name="project_type"><option>Website</option><option>Web Application</option><option>Mobile App</option><option>AI Solution</option><option>Enterprise Software</option><option>Other</option></select></div><div><label>Budget Range</label><select name="budget"><option>Under $1k</option><option>$1k – $5k</option><option>$5k – $15k</option><option>$15k+</option></select></div></div>
         <label>Project Description</label>
-        <textarea placeholder="Tell us what you're building..." style="margin-bottom:20px;"></textarea>
-        <div class="file-drop">📎 Drop a file here or click to attach (brief, spec, designs)</div>
+        <textarea name="description" placeholder="Tell us what you're building..." style="margin-bottom:20px;" required></textarea>
+        <label class="file-drop" style="display:block; cursor:pointer;">
+          <input type="file" name="attachment" style="display:none;">
+          📎 Drop a file here or click to attach (brief, spec, designs)
+        </label>
         <div class="form-actions">
-          <a href="#" class="btn btn-primary">Send Inquiry →</a>
+          <button type="submit" class="btn btn-primary" style="font-family:inherit;">Send Inquiry →</button>
           <a href="#" class="btn btn-ghost">Schedule Meeting 📅</a>
         </div>
-      </div>
+      </form>
     </div>
   </section>
 
