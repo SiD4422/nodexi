@@ -154,21 +154,6 @@
     pointer-events: none;
     overflow: hidden;
   }
-  .ethereal-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent 20%, rgba(34, 211, 238, 0.5) 40%, rgba(168, 85, 247, 0.5) 60%, transparent 80%);
-    background-size: 300% 300%;
-    animation: flowPower 3.5s linear infinite;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    z-index: 10;
-  }
-  @keyframes flowPower {
-    0% { background-position: 100% 100%; }
-    100% { background-position: 0% 0%; }
-  }
   
   .ethereal-image img {
     width: 100%;
