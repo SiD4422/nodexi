@@ -68,7 +68,11 @@ document.querySelectorAll('.nav-links a').forEach(a => {
   nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (current < total) { current++; render(); }
-    else { nextBtn.textContent = 'Submitted ✓'; }
+    else { 
+      const form = e.target.closest('form');
+      if (form) form.submit();
+      nextBtn.textContent = 'Submitted ✓'; 
+    }
   });
   backBtn.addEventListener('click', (e) => {
     e.preventDefault();

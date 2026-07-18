@@ -95,7 +95,7 @@
         <h2>Tell us what you're building — takes 60 seconds.</h2>
         <p style="margin:0 auto;">A few quick questions so we can respond with something useful, not a generic reply.</p>
       </div>
-      <div class="wizard-card reveal">
+      <form class="wizard-card reveal" name="wizard" method="POST" data-netlify="true">
         <div class="wizard-dots">
           <span class="wd active" data-step="1"></span><span class="wd" data-step="2"></span><span class="wd" data-step="3"></span><span class="wd" data-step="4"></span><span class="wd" data-step="5"></span>
         </div>
@@ -116,7 +116,7 @@
 
         <div class="wizard-step" data-step="2">
           <label>Tell us your idea</label>
-          <textarea placeholder="What problem are you solving, and for who?" style="min-height:130px;"></textarea>
+          <textarea name="idea" placeholder="What problem are you solving, and for who?" style="min-height:130px;"></textarea>
         </div>
 
         <div class="wizard-step" data-step="3">
@@ -139,23 +139,26 @@
             <label class="chip"><input type="radio" name="timeline" value="flex"><span>Flexible</span></label>
           </div>
           <label style="margin-top:18px;">Upload a document (optional)</label>
-          <div class="file-drop">📎 Drop a brief, spec, or sketch here</div>
+          <label class="file-drop" style="display:block; cursor:pointer;">
+            <input type="file" name="attachment" style="display:none;">
+            📎 Drop a brief, spec, or sketch here
+          </label>
         </div>
 
         <div class="wizard-step" data-step="5">
           <label>Where should we reply?</label>
           <div class="form-row" style="grid-template-columns:1fr 1fr;">
-            <div><label>Name</label><input type="text" placeholder="Your name"></div>
-            <div><label>Email</label><input type="email" placeholder="you@email.com"></div>
+            <div><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>
+            <div><label>Email</label><input type="email" name="email" placeholder="you@email.com" required></div>
           </div>
           <p style="color:var(--ink-dim); font-size:13.5px; margin-top:14px;">That's it — submit and we'll get back to you within a day with next steps.</p>
         </div>
 
         <div class="wizard-actions">
-          <a href="#" class="btn btn-ghost btn-sm" id="wizBack">← Back</a>
-          <a href="#" class="btn btn-primary btn-sm" id="wizNext">Next →</a>
+          <button type="button" class="btn btn-ghost btn-sm" id="wizBack">← Back</button>
+          <button type="button" class="btn btn-primary btn-sm" id="wizNext" style="font-family:inherit;">Next →</button>
         </div>
-      </div>
+      </form>
     </div>
   </section>
 
