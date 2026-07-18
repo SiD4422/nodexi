@@ -118,6 +118,16 @@
   .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
   .btn-lg{padding:14px 26px; font-size:15px;}
   
+  .pulse-dot {
+    display: inline-block;
+    color: var(--cyan);
+    animation: pulseGlow 2s infinite;
+  }
+  @keyframes pulseGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(34, 211, 238, 0.4); opacity: 0.8; }
+    50% { text-shadow: 0 0 25px rgba(34, 211, 238, 1); opacity: 1; transform: scale(1.1); }
+  }
+  
   .trust-row{margin-top:34px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
   .trust-row small{color:var(--ink-dim); font-size:14px;}
   
@@ -143,6 +153,12 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    animation: floatImage 8s ease-in-out infinite;
+  }
+  @keyframes floatImage {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.02); }
+    100% { transform: translateY(0) scale(1); }
   }
 
   /* Removed legacy 3D hero CSS */
