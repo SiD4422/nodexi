@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital_Lab Case Study — Nodexi</title>
+<meta name="description" content="Case study for the Digital_Lab project engineered by Nodexi.">
+<link rel="canonical" href="https://www.nodexi.dev/project-logic-simulator.html">
+<meta name="theme-color" content="#05070d">
+<meta name="robots" content="index, follow">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=8">
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="loader"><div class="loader-mark">NODEXI<div class="loader-bar"><span></span></div></div></div>
+<div class="noise"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="index.html" class="logo"><span class="logo-mark">N</span>Nodexi</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="industries.html">Industries</a>
+        <a href="about.html">About</a>
+        <a href="careers.html">Careers</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-ghost btn-sm">Book Consultation</a>
+        <a href="contact.html#start" class="btn btn-primary btn-sm">Start a Project →</a>
+      </div>
+      <button class="menu-toggle">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="cs-hero">
+    <div class="wrap reveal in">
+      <div class="crumb" style="margin-bottom:30px;"><a href="portfolio.html">← Back to Portfolio</a></div>
+      <div class="cs-hero-grid">
+        <div class="cs-hero-text">
+          <div class="eyebrow">EDUCATION · ENGINEERING</div>
+          <h1>Digital_Lab</h1>
+          <p>Next-Gen Electric Circuits Lab Simulator. A real-time, interactive simulation environment built specifically for students to design, visualize, and master complex circuits.</p>
+          <div style="display:flex; gap:16px; margin-top:20px;">
+            <a href="https://digitallaab.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Visit Live Site ↗</a>
+          </div>
+        </div>
+        <div class="cs-hero-meta">
+          <div class="meta-item"><span>Client</span><p>Internal Product</p></div>
+          <div class="meta-item"><span>Timeline</span><p>Completed</p></div>
+          <div class="meta-item"><span>Role</span><p>Full-Stack Engineering</p></div>
+          <div class="meta-item"><span>Platform</span><p>Web Browser</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-body">
+    <div class="wrap">
+       <div class="cs-content reveal">
+         <h2>The Challenge</h2>
+         <p>Existing logic simulators were either too complex (requiring downloads and local installation) or too simple (lacking realistic propagation delays). The goal was to build a highly performant, browser-based simulator that engineering students could use to validate their designs instantly.</p>
+         
+         <div class="cs-image" style="background:transparent;">
+            <img src="assets/digital-lab.png" alt="Digital_Lab UI" style="width:100%; height:100%; object-fit:cover; border-radius:24px;">
+         </div>
+
+         <h2>The Solution</h2>
+         <p>We engineered a custom graph-traversal engine using JavaScript and the HTML5 Canvas API. The engine supports arbitrary wire routing, dynamic gate creation (AND, OR, NOT, XOR), and real-time state propagation at 60 FPS. By avoiding standard DOM elements and rendering directly to Canvas, the application can handle thousands of gates without dropping frames.</p>
+         
+         <div class="cs-tech">
+           <h3>Tech Stack</h3>
+           <div class="tech-tags">
+             <span>Vanilla JavaScript</span>
+             <span>HTML5 Canvas</span>
+             <span>Node.js</span>
+             <span>Vite</span>
+           </div>
+         </div>
+       </div>
+    </div>
+  </section>
+
+  <section class="contact" style="padding-top:80px; padding-bottom:100px;">
+    <div class="wrap" style="text-align:center;">
+      <div class="glow-box">
+        <h2 style="margin-bottom:20px;">Ready to build something similar?</h2>
+        <a href="contact.html#start" class="btn btn-primary btn-lg reveal">Start a Project →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><span class="logo-mark">N</span>Nodexi</a>
+        <p>Nodexi engineers scalable software, AI and cloud platforms for startups and enterprises — from architecture to production and beyond.</p>
+        <div class="social-row"><a href="#">in</a><a href="#">𝕏</a><a href="#">gh</a><a href="#">yt</a></div>
+      </div>
+      <div class="foot-col"><h5>Company</h5><a href="about.html">About</a><a href="careers.html">Careers</a><a href="blog.html">Blog</a><a href="portfolio.html">Portfolio</a><a href="contact.html">Contact</a></div>
+      <div class="foot-col"><h5>Services</h5><a href="services.html">Web Development</a><a href="services.html">Mobile Apps</a><a href="services.html">AI Solutions</a><a href="services.html">Cloud &amp; DevOps</a><a href="services.html">UI/UX Design</a></div>
+      <div class="foot-col newsletter"><h5>Stay Updated</h5><p style="color:var(--ink-dim); font-size:13px; margin-bottom:14px;">Engineering insights, monthly.</p><input type="email" placeholder="you@company.com"><a href="#" class="btn btn-primary btn-sm" style="width:100%; justify-content:center;">Subscribe</a></div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Nodexi. All rights reserved.</p>
+      <div class="legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
