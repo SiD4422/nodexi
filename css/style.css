@@ -374,7 +374,8 @@
     .hero-grid, .why-grid, .contact-grid{grid-template-columns:1fr;}
     .hero-grid{text-align:center; gap:30px;}
     .hero-content{margin:0 auto;}
-    .hero-actions{justify-content:center;}
+    .hero-actions{flex-direction:column; align-items:center; width:100%; gap:12px;}
+    .hero-actions .btn{width:100%; max-width:300px; justify-content:center;}
     .trust-row{justify-content:center; gap:8px;}
     .trust-row .badge{font-size:10px; padding:6px 10px;}
     .hero-visual{height:250px; margin-top:10px;}
