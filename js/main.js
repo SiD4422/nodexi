@@ -4,6 +4,15 @@ window.addEventListener('load', () => {
   if (loader) setTimeout(() => loader.classList.add('hide'), 500);
 });
 
+// ===== Mobile Menu =====
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+if(menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+}
+
 // ===== Scroll progress =====
 const progress = document.getElementById('progress');
 if (progress) {
