@@ -187,7 +187,7 @@
   /* Services */
   .services{padding:110px 0;}
   .grid-5{display:grid; grid-template-columns:repeat(5,1fr); gap:18px;}
-  .card{background:var(--glass); border:1px solid var(--line); border-radius:var(--radius); padding:26px 22px; transition:all .4s cubic-bezier(0.2,0.8,0.2,1); position:relative; overflow:hidden; z-index:1;}
+  .card{display:block; text-decoration:none; color:inherit; cursor:pointer; background:var(--glass); border:1px solid var(--line); border-radius:var(--radius); padding:26px 22px; transition:all .4s cubic-bezier(0.2,0.8,0.2,1); position:relative; overflow:hidden; z-index:1;}
   .card::before{content:''; position:absolute; inset:0; border-radius:inherit; box-shadow:0 0 0 transparent; transition:all .4s ease; z-index:-1;}
   .card:hover{background:rgba(255,255,255,0.03); border-color:rgba(6,182,212,0.4); transform:translateY(-8px) scale(1.02);}
   .card:hover::before{box-shadow: 0 0 40px rgba(6,182,212,0.15), 0 0 80px rgba(232,28,255,0.1);}
