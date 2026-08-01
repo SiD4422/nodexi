@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gateonix Case Study | Nodexi</title>
+  <meta name="description" content="Nodexi builds powerful software, AI pipelines, cloud infrastructure and hardware systems for startups and enterprises." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ======================== PRELOADER ======================== -->
+<div id="preloader">
+  <div class="preloader-logo">Nodexi</div>
+  <div class="preloader-bar-wrap">
+    <div class="preloader-bar" id="preloader-bar"></div>
+  </div>
+</div>
+
+<!-- ======================== NAVBAR ======================== -->
+
+<nav class="nav" id="navbar">
+  <a href="index.html" class="nav-logo" style="text-decoration:none;">Nodexi</a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="#contact">Blog</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode" style="margin-right: 15px; cursor: pointer;">🌙</button>
+    <a href="#contact" class="btn btn-dark" id="btn-book-call">Book a Call ↗</a>
+    <div class="nav-menu-btn" id="menu-btn">≡</div>
+  </div>
+</nav>
+
+
+<div style="padding-top:100px;"></div>
+
+<!-- ======================== CASE STUDY ======================== -->
+<section class="services-section reveal" style="padding-top: 40px; padding-bottom: 80px;">
+  <p class="section-eyebrow">Case Study</p>
+  <h2 class="section-h2">Gateonix<br><span class="accent">Enterprise Cloud ERP</span></h2>
+  
+  <div style="width: 100%; max-width: 1200px; margin: 40px auto; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-hero);">
+    <img src="../nodexi-site (1)/nodexi-site/assets/gateonix.png" alt="Gateonix" style="width: 100%; height: auto; display: block;" onerror="this.style.display='none';">
+  </div>
+
+  <div style="max-width: 1200px; margin: 60px auto; display: grid; grid-template-columns: 1fr 3fr; gap: 60px;">
+    <!-- Sidebar -->
+    <div>
+      <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 20px; color: var(--black);">Tech Stack</h3>
+      <ul style="list-style: none; padding: 0; margin: 0; color: var(--gray-500); font-size: 16px; display: flex; flex-direction: column; gap: 12px;">
+        <li>• Next.js / React</li>
+        <li>• Node.js & Express</li>
+        <li>• PostgreSQL</li>
+        <li>• AWS (EC2, S3)</li>
+        <li>• Stripe Integration</li>
+      </ul>
+      <h3 style="font-size: 20px; font-weight: 800; margin-top: 40px; margin-bottom: 20px; color: var(--black);">Role</h3>
+      <p style="color: var(--gray-500); font-size: 16px;">Full-Stack Development, Cloud Architecture, UI/UX Design</p>
+    </div>
+
+    <!-- Main Content -->
+    <div>
+      <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 20px; color: var(--black);">The Challenge</h3>
+      <p style="font-size: 18px; color: var(--gray-500); line-height: 1.8; margin-bottom: 40px;">
+        Gateonix needed a completely modernized Enterprise Resource Planning (ERP) platform capable of handling real-time data synchronization across thousands of active sessions. The existing legacy system was slow, prone to database locks, and featured an incredibly outdated user interface that hampered employee productivity.
+      </p>
+
+      <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 20px; color: var(--black);">The Architecture</h3>
+      <p style="font-size: 18px; color: var(--gray-500); line-height: 1.8; margin-bottom: 40px;">
+        We rebuilt the platform from the ground up using a serverless-first approach on AWS. By leveraging edge caching and a highly optimized PostgreSQL schema with read replicas, we reduced average query times by 84%. The frontend was completely redesigned with a focus on data density and quick actions, utilizing a modern React architecture.
+      </p>
+      
+      <div style="background: var(--purple-light); padding: 40px; border-radius: var(--radius-xl); border: 1px solid var(--purple-mid);">
+        <h4 style="font-size: 20px; font-weight: 800; color: var(--purple); margin-bottom: 10px;">Outcome</h4>
+        <p style="font-size: 18px; color: var(--black); line-height: 1.6; margin: 0;">System performance increased drastically, supporting 10x the concurrent users without a single dropped transaction. Employee onboarding time was cut in half due to the intuitive UI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ======================== CTA BANNER ======================== -->
+<section class="cta-section reveal" id="contact">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="cta-star">✦</div>
+      <div>
+        <div class="cta-text-title">Ready to build something exceptional?</div>
+        <div class="cta-text-sub">Let's turn your ideas into powerful digital products.</div>
+      </div>
+    </div>
+    <a href="mailto:hello@nodexi.com" class="btn btn-dark" style="background:#fff; color:#000; font-size:15px; padding:14px 28px;" id="btn-cta-book">
+      Book a Call ↗
+    </a>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+
+<footer>
+  <div class="footer" id="footer">
+    <div class="footer-logo">Nodexi</div>
+    <div class="footer-copy">© 2025 Nodexi. All rights reserved.</div>
+    <div class="footer-socials">
+      <a href="#" class="footer-social-btn" title="LinkedIn">in</a>
+      <a href="#" class="footer-social-btn" title="GitHub">GH</a>
+      <a href="mailto:hello@nodexi.com" class="footer-social-btn" title="Email">✉</a>
+    </div>
+  </div>
+</footer>
+
+
+
+  <!-- Custom Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-follower"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

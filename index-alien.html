@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NULLSPACE — Design for the ones who don't blend in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0a0d;
+    --bg-alt: #101015;
+    --panel: #131318;
+    --text: #f2efe8;
+    --text-dim: #8d8c95;
+    --line: rgba(242,239,232,0.09);
+    --accent-a: #8a5cff;
+    --accent-b: #2ee6a8;
+    --grad: linear-gradient(120deg, var(--accent-a), var(--accent-b));
+    --maxw: 1180px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.02em;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+
+  /* ---------- noise overlay ---------- */
+  .noise{
+    position:fixed; inset:0; pointer-events:none; z-index:200;
+    opacity:0.035; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(10,10,13,0.7);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px; max-width:var(--maxw); margin:0 auto;
+  }
+  .logo{ font-size:20px; font-weight:700; display:flex; align-items:center; gap:8px; }
+  .logo .dot{ width:8px; height:8px; border-radius:50%; background:var(--grad); }
+  .nav-links{ display:flex; gap:36px; }
+  .nav-links a{
+    font-size:14px; color:var(--text-dim); position:relative; padding:4px 0;
+    transition:color .25s ease;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; height:1px; width:0;
+    background:var(--grad); transition:width .25s ease;
+  }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    font-size:13px; padding:10px 18px; border:1px solid var(--line);
+    border-radius:999px; display:flex; align-items:center; gap:8px;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .nav-cta:hover{ border-color:var(--accent-b); transform:translateY(-1px); }
+  .burger{ display:none; width:22px; height:16px; position:relative; cursor:pointer; }
+  .burger span{ position:absolute; left:0; right:0; height:1.5px; background:var(--text); }
+  .burger span:nth-child(1){ top:0; }
+  .burger span:nth-child(2){ top:7px; }
+  .burger span:nth-child(3){ top:14px; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; padding:180px 0 90px; overflow:hidden;
+  }
+  .orb-field{ position:absolute; inset:0; z-index:0; pointer-events:none; }
+  .orb{
+    position:absolute; width:520px; height:520px; border-radius:50%;
+    background:var(--grad); filter:blur(120px); opacity:0.28;
+    top:-160px; right:-120px;
+    transition:transform .6s cubic-bezier(.2,.8,.2,1);
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12px; color:var(--text-dim); margin-bottom:22px;
+  }
+  .eyebrow .dash{ width:26px; height:1px; background:var(--accent-b); }
+  .hero h1{
+    font-size:clamp(64px, 11vw, 156px); line-height:0.92; font-weight:700;
+    position:relative; z-index:1;
+  }
+  .hero h1 .out{
+    -webkit-text-stroke:1.5px var(--text); color:transparent;
+  }
+  .hero-sub{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:40px; margin-top:34px; position:relative; z-index:1;
+    flex-wrap:wrap;
+  }
+  .hero-sub p{
+    max-width:420px; color:var(--text-dim); font-size:16px; line-height:1.6;
+  }
+  .reel{
+    position:relative; margin-top:56px; border-radius:20px; overflow:hidden;
+    border:1px solid var(--line); aspect-ratio:16/7; z-index:1;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(138,92,255,0.35), transparent 60%),
+      radial-gradient(circle at 70% 70%, rgba(46,230,168,0.28), transparent 60%),
+      #0d0d11;
+  }
+  .reel::before{
+    content:''; position:absolute; inset:0;
+    background-image:repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 26px);
+    animation:drift 14s linear infinite;
+  }
+  @keyframes drift{ from{ transform:translateX(0);} to{ transform:translateX(-160px);} }
+  .reel-caption{
+    position:absolute; bottom:20px; left:24px; z-index:2;
+    font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:10px;
+  }
+  .rec{ width:8px; height:8px; border-radius:50%; background:#ff5c5c; animation:pulse 1.6s infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.3;} }
+
+  /* ---------- marquee ---------- */
+  .marquee-strip{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:18px 0; overflow:hidden; white-space:nowrap;
+  }
+  .marquee-track{ display:inline-flex; gap:40px; animation:scroll 26s linear infinite; }
+  .marquee-track span{
+    font-size:15px; color:var(--text-dim); display:flex; align-items:center; gap:40px;
+  }
+  .marquee-track span b{ color:var(--text); font-weight:600; }
+  @keyframes scroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+
+  /* ---------- section shell ---------- */
+  section{ padding:120px 0; }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:56px; gap:24px; flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(36px,5vw,56px); }
+  .section-head p{ max-width:340px; color:var(--text-dim); font-size:15px; line-height:1.6; }
+
+  /* ---------- projects grid ---------- */
+  .grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:28px;
+  }
+  .card{
+    position:relative; border:1px solid var(--line); border-radius:18px;
+    padding:18px; background:var(--panel);
+    opacity:0; transform:translateY(28px);
+    transition:opacity .7s ease, transform .7s ease, border-color .35s ease;
+  }
+  .card.in{ opacity:1; transform:translateY(0); }
+  .card:hover{ border-color:var(--accent-a); }
+  .thumb{
+    position:relative; border-radius:12px; aspect-ratio:16/11; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .thumb-letter{
+    font-family:'Space Grotesk',sans-serif; font-size:110px; font-weight:700;
+    color:rgba(255,255,255,0.14); position:relative; z-index:1;
+  }
+  .thumb-grad{ position:absolute; inset:0; transition:transform .6s ease; }
+  .card:hover .thumb-grad{ transform:scale(1.08) rotate(2deg); }
+  .card-body{ padding:20px 6px 6px; }
+  .tags{ display:flex; gap:8px; margin-bottom:14px; }
+  .tags span{
+    font-size:11px; padding:5px 10px; border-radius:999px;
+    border:1px solid var(--line); color:var(--text-dim);
+  }
+  .card h3{ font-size:22px; margin-bottom:8px; display:flex; align-items:center; justify-content:space-between; }
+  .card h3 .arrow{
+    font-size:16px; transition:transform .35s ease; color:var(--accent-b);
+  }
+  .card:hover h3 .arrow{ transform:translate(4px,-4px); }
+  .card p.desc{ font-size:14px; color:var(--text-dim); line-height:1.55; }
+
+  /* ---------- stats strip ---------- */
+  .stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:48px 0;
+  }
+  .stat b{ display:block; font-family:'Space Grotesk',sans-serif; font-size:40px; }
+  .stat span{ font-size:13px; color:var(--text-dim); }
+
+  /* ---------- testimonials ---------- */
+  .t-wrap{ position:relative; }
+  .t-track{ display:flex; gap:24px; overflow:hidden; }
+  .t-card{
+    min-width:100%; border:1px solid var(--line); border-radius:18px;
+    padding:44px; background:var(--panel);
+    transition:opacity .4s ease;
+  }
+  .t-card p{ font-size:22px; line-height:1.5; font-family:'Space Grotesk',sans-serif; font-weight:500; }
+  .t-foot{ margin-top:28px; display:flex; align-items:center; gap:14px; }
+  .t-avatar{ width:42px; height:42px; border-radius:50%; background:var(--grad); }
+  .t-name{ font-size:14px; font-weight:600; }
+  .t-role{ font-size:12px; color:var(--text-dim); }
+  .t-controls{ display:flex; gap:10px; margin-top:28px; }
+  .t-controls button{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--line);
+    background:transparent; color:var(--text); cursor:pointer; font-size:15px;
+    transition:border-color .25s ease, background .25s ease;
+  }
+  .t-controls button:hover{ border-color:var(--accent-b); background:rgba(46,230,168,0.08); }
+
+  /* ---------- CTA ---------- */
+  .cta{
+    text-align:center; border-radius:28px; margin:0 32px; padding:100px 32px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(138,92,255,0.25), transparent 55%),
+      radial-gradient(circle at 80% 80%, rgba(46,230,168,0.2), transparent 55%),
+      var(--bg-alt);
+    border:1px solid var(--line);
+  }
+  .cta h2{ font-size:clamp(32px,6vw,64px); max-width:760px; margin:0 auto 32px; }
+  .cta-btn{
+    display:inline-flex; align-items:center; gap:10px; padding:16px 30px;
+    border-radius:999px; background:var(--text); color:var(--bg);
+    font-weight:600; font-size:15px; transition:transform .25s ease;
+  }
+  .cta-btn:hover{ transform:translateY(-2px); }
+
+  /* ---------- footer ---------- */
+  footer{ padding:80px 0 40px; border-top:1px solid var(--line); }
+  .foot-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px;
+    padding-bottom:56px;
+  }
+  .foot-col h4{ font-size:13px; color:var(--text-dim); margin-bottom:18px; }
+  .foot-col a, .foot-col p{
+    display:block; font-size:14px; color:var(--text); margin-bottom:12px;
+    line-height:1.5;
+  }
+  .foot-col a{ color:var(--text-dim); transition:color .25s ease; }
+  .foot-col a:hover{ color:var(--text); }
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:28px; border-top:1px solid var(--line);
+    font-size:12px; color:var(--text-dim); flex-wrap:wrap; gap:12px;
+  }
+
+  @media (max-width:860px){
+    .nav-links{ display:none; }
+    .burger{ display:block; }
+    .grid{ grid-template-columns:1fr; }
+    .stats{ grid-template-columns:repeat(2,1fr); }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<header>
+  <nav>
+    <div class="logo"><span class="dot"></span>NULLSPACE</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#insights">Insights</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Book a call →</a>
+    <div class="burger"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="orb-field"><div class="orb" id="orb"></div></div>
+  <div class="wrap">
+    <div class="eyebrow"><span class="dash"></span>PRODUCT & WEBFLOW DESIGN STUDIO</div>
+    <h1>WORK<span class="out">.</span></h1>
+    <div class="hero-sub">
+      <p>Interfaces for fintech, SaaS and commerce teams who'd rather look like nobody else. Strategy, UI/UX, and build — under one roof.</p>
+      <a href="#contact" class="nav-cta">Start a project →</a>
+    </div>
+    <div class="reel">
+      <div class="reel-caption"><span class="rec"></span>SHOWREEL — SELECTED WORK 2024–2026</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-strip">
+  <div class="marquee-track" id="marquee">
+    <span>DESIGN FOR THE ONES WHO DON'T BLEND IN <b>★</b> FINTECH <b>★</b> HEALTHCARE <b>★</b> SAAS <b>★</b> E-COMMERCE <b>★</b> REAL ESTATE <b>★</b></span>
+    <span>DESIGN FOR THE ONES WHO DON'T BLEND IN <b>★</b> FINTECH <b>★</b> HEALTHCARE <b>★</b> SAAS <b>★</b> E-COMMERCE <b>★</b> REAL ESTATE <b>★</b></span>
+  </div>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <p>Eleven products across insurance, fintech, retail and lab-tech — each shipped end to end.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><b>60+</b><span>Products shipped</span></div>
+    <div class="stat"><b>4.9</b><span>Avg. client rating</span></div>
+    <div class="stat"><b>6</b><span>Industries served</span></div>
+    <div class="stat"><b>2018</b><span>Studio founded</span></div>
+  </div>
+</div>
+
+<section id="feedback">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What clients say</h2>
+      <p>Placeholder quotes — swap in your own testimonials here.</p>
+    </div>
+    <div class="t-wrap">
+      <div class="t-track" id="tTrack"></div>
+      <div class="t-controls">
+        <button id="tPrev">←</button>
+        <button id="tNext">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta" id="contact">
+    <h2>Got an idea worth building? Let's make it look inevitable.</h2>
+    <a href="mailto:hello@yourstudio.design" class="cta-btn">Contact us ↗</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h4>NULLSPACE</h4>
+        <p>Global product & Webflow design studio.<br>Your City, Your Country</p>
+        <a href="mailto:hello@yourstudio.design">hello@yourstudio.design</a>
+      </div>
+      <div class="foot-col">
+        <h4>Studio</h4>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a href="#insights">Insights</a>
+      </div>
+      <div class="foot-col">
+        <h4>Social</h4>
+        <a href="#">Dribbble</a>
+        <a href="#">Behance</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Nullspace Studio. Template layout — not affiliated with any agency.</span>
+      <span>Built to be replaced with your own content.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- project data (original placeholder copy) ----
+  const projects = [
+    ["Covrzy","Insurance","Business insurance, reimagined as a five-minute checkout."],
+    ["Ledgerly","Fintech","Bookkeeping dashboard rebuilt for daily-use clarity."],
+    ["Grape","Fashion","Fashion e-commerce app tuned for scroll-and-buy speed."],
+    ["Botiga","Retail","Storefront builder small merchants can run themselves."],
+    ["Kriyadocs","SaaS","Document-publishing suite redesigned around one editor view."],
+    ["Woo Spaces","Coworking","Booking flow for shared workspaces, minus the friction."],
+    ["Palmer & Co","Accounting","Advisory firm site turned into an actual lead engine."],
+    ["Stockal","Fintech","Cross-border investing app for first-time stock buyers."],
+    ["Card91","Fintech","Card issuance console built for finance ops teams."],
+    ["Salesleg","Real Estate","Lead + site coordination for real-estate crews in the field."],
+    ["Zifo","Lab-Tech","Workflow system tying a whole lab's tools into one screen."]
+  ];
+
+  const grid = document.getElementById('grid');
+  projects.forEach(([name, tag, desc], i)=>{
+    const hue = (i*47) % 360;
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="thumb">
+        <div class="thumb-grad" style="position:absolute;inset:0;background:linear-gradient(135deg, hsl(${hue} 70% 55% / .5), hsl(${(hue+70)%360} 70% 45% / .5)), #0d0d11;"></div>
+        <span class="thumb-letter">${name[0]}</span>
+      </div>
+      <div class="card-body">
+        <div class="tags"><span>${tag}</span><span>App / Web</span></div>
+        <h3>${name}<span class="arrow">↗</span></h3>
+        <p class="desc">${desc}</p>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.card').forEach(c=>io.observe(c));
+
+  // hero orb follows cursor (subtle)
+  const orb = document.getElementById('orb');
+  window.addEventListener('mousemove', (e)=>{
+    const x = (e.clientX / window.innerWidth - 0.5) * 60;
+    const y = (e.clientY / window.innerHeight - 0.5) * 60;
+    orb.style.transform = `translate(${x}px, ${y}px)`;
+  });
+
+  // testimonials
+  const testimonials = [
+    ["This team turned a vague brief into a product our users actually understood on day one.","R. Nair","Fintech Founder"],
+    ["Every review round moved faster because they'd already thought two steps ahead of us.","K. Menon","Head of Product, SaaS"],
+    ["Our conversion rate moved within weeks of launch — the redesign paid for itself.","A. Verma","COO, E-commerce"],
+    ["They pushed back on our first idea and were right to. The final flow shipped clean.","S. Iyer","Founder, Retail"]
+  ];
+  const tTrack = document.getElementById('tTrack');
+  testimonials.forEach(([quote,name,role])=>{
+    const el = document.createElement('div');
+    el.className = 't-card';
+    el.innerHTML = `<p>"${quote}"</p>
+      <div class="t-foot">
+        <div class="t-avatar"></div>
+        <div><div class="t-name">${name}</div><div class="t-role">${role}</div></div>
+      </div>`;
+    tTrack.appendChild(el);
+  });
+  let tIndex = 0;
+  function renderT(){
+    tTrack.style.transition = 'transform .5s ease';
+    tTrack.style.transform = `translateX(-${tIndex*100}%)`;
+  }
+  document.getElementById('tNext').onclick = ()=>{ tIndex = (tIndex+1)%testimonials.length; renderT(); };
+  document.getElementById('tPrev').onclick = ()=>{ tIndex = (tIndex-1+testimonials.length)%testimonials.length; renderT(); };
+  setInterval(()=>{ tIndex = (tIndex+1)%testimonials.length; renderT(); }, 6000);
+</script>
+
+</body>
+</html>

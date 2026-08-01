@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work | Nodexi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2.1" />
+</head>
+<body>
+
+<!-- ======================== PRELOADER ======================== -->
+<div id="preloader">
+  <div class="preloader-logo">Nodexi</div>
+  <div class="preloader-bar-wrap"><div class="preloader-bar" id="preloader-bar"></div></div>
+</div>
+
+<!-- ======================== NAVBAR ======================== -->
+<nav class="nav" id="navbar">
+  <a href="index.html" class="nav-logo" style="text-decoration:none; text-transform: uppercase; letter-spacing: 4px; font-size: 28px; font-weight: 800;">NODEXI</a>
+  <div class="nav-right" style="display: flex; gap: 16px; align-items: center;">
+    <a href="#contact" class="btn btn-outline" style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 14px 28px; border-radius: 999px; text-decoration: none;" id="btn-book-call">BOOK A CALL ↗</a>
+    <a href="#contact" class="btn btn-dark" style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 14px 28px; border-radius: 999px; text-decoration: none;" id="btn-contact">CONTACT ↗</a>
+    <button class="nav-menu-btn" id="menu-btn" aria-label="Open Menu" style="margin-left: 8px; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-direction: column; gap: 5px;">
+      <span style="width: 18px; height: 1.5px; display: block;"></span>
+      <span style="width: 18px; height: 1.5px; display: block;"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ======================== FULLSCREEN MENU ======================== -->
+<div class="panel-overlay" id="panel-overlay"></div>
+<aside class="full-menu" id="side-panel">
+  <button class="panel-close" id="panel-close" aria-label="Close Menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+  </button>
+  <div class="full-menu-inner">
+    <div class="menu-col">
+      <div class="menu-label"><span class="dot"></span> MENU</div>
+      <nav class="full-nav">
+        <a href="projects.html" class="full-link">WORK <span class="arrow">↗</span></a>
+        <a href="services.html" class="full-link">PROCESS <span class="arrow">↗</span></a>
+        <a href="about.html" class="full-link">ABOUT <span class="arrow">↗</span></a>
+        <a href="insights.html" class="full-link">INSIGHTS <span class="arrow">↗</span></a>
+        <a href="seo.html" class="full-link">SEO <span class="arrow">↗</span></a>
+        <a href="#contact" class="full-link">CONTACT <span class="arrow">↗</span></a>
+      </nav>
+    </div>
+    <div class="menu-col">
+      <div class="menu-label"><span class="dot"></span> WEBFLOW WEBSITE SOLUTIONS</div>
+      <nav class="full-nav">
+        <a href="startups.html" class="full-link">FOR STARTUPS <span class="arrow">↗</span></a>
+        <a href="web3.html" class="full-link">FOR WEB3 <span class="arrow">↗</span></a>
+      </nav>
+      <div class="menu-label" style="margin-top: 60px;"><span class="dot"></span> DESIGN SERVICES</div>
+      <nav class="full-nav">
+        <a href="design.html" class="full-link">PRODUCT DESIGN <span class="arrow">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</aside>
+
+
+<div style="padding-top:120px;"></div>
+
+<!-- PROJECTS HERO -->
+<section class="reveal" style="padding: 0 60px 40px; max-width: var(--max); margin: 0 auto;">
+  <p class="section-eyebrow" style="text-align: left; margin-bottom: 24px;">Our Work</p>
+  <h1 style="font-size: clamp(48px, 8vw, 120px); font-weight: 900; color: var(--black); line-height: 0.9; letter-spacing: -0.04em; text-transform: uppercase;">
+    Selected<br><span class="hover-stroke">Works</span>
+  </h1>
+</section>
+
+<!-- PROJECTS GRID -->
+<section style="max-width: var(--max); margin: 0 auto; padding: 0 60px 100px;">
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 32px;">
+    
+    
+    <a href="work-gateonix.html" class="reveal" style="display: flex; flex-direction: column; cursor: pointer; text-decoration: none;">
+      <div class="grid-img-wrap" style="background: #0c0814;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/images/projects/gateonix.jpg'); background-size: cover; background-position: center;"></div>
+
+        <!-- Tags Overlay -->
+        <div style="position: absolute; bottom: 20px; left: 20px; display: flex; gap: 8px; z-index: 10;">
+          <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">EdTech</span><span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">WebAssembly</span>
+        </div>
+      </div>
+      
+      <h3 style="font-size: 22px; font-weight: 700; color: var(--black); margin-bottom: 8px;">Gateonix</h3>
+      <p style="font-size: 15px; color: var(--gray-500); line-height: 1.6; max-width: 90%;">Advanced Digital Logic and Computing Lab. A browser-native environment for designing, simulating, and understanding digital logic circuits.</p>
+    </a>
+    
+    <a href="work-digital-lab.html" class="reveal" style="display: flex; flex-direction: column; cursor: pointer; text-decoration: none;">
+      <div class="grid-img-wrap" style="background: #0c0716;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/images/projects/digital_lab.jpg'); background-size: cover; background-position: center;"></div>
+
+        <!-- Tags Overlay -->
+        <div style="position: absolute; bottom: 20px; left: 20px; display: flex; gap: 8px; z-index: 10;">
+          <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">EdTech</span><span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">Simulation</span>
+        </div>
+      </div>
+      
+      <h3 style="font-size: 22px; font-weight: 700; color: var(--black); margin-bottom: 8px;">Digital Lab</h3>
+      <p style="font-size: 15px; color: var(--gray-500); line-height: 1.6; max-width: 90%;">Next-Gen Electric Circuits Lab Simulator. A real-time, interactive simulation environment built specifically for students to design, visualize, and master complex circuits.</p>
+    </a>
+    
+    <a href="work-multisym.html" class="reveal" style="display: flex; flex-direction: column; cursor: pointer; text-decoration: none;">
+      <div class="grid-img-wrap" style="background: #0a1a11;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/images/projects/multisym_live.jpg'); background-size: cover; background-position: center;"></div>
+
+        <!-- Tags Overlay -->
+        <div style="position: absolute; bottom: 20px; left: 20px; display: flex; gap: 8px; z-index: 10;">
+          <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">EdTech</span><span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">Simulation</span>
+        </div>
+      </div>
+      
+      <h3 style="font-size: 22px; font-weight: 700; color: var(--black); margin-bottom: 8px;">MultiSym Live</h3>
+      <p style="font-size: 15px; color: var(--gray-500); line-height: 1.6; max-width: 90%;">Interactive digital-logic circuit simulator for building and testing gate-level designs in the browser. Engineered entirely from scratch without physics engines.</p>
+    </a>
+    
+    <a href="work-dalalstreett.html" class="reveal" style="display: flex; flex-direction: column; cursor: pointer; text-decoration: none;">
+      <div class="grid-img-wrap" style="background: #020816;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/images/projects/dalalstreett.jpg'); background-size: cover; background-position: center;"></div>
+
+        <!-- Tags Overlay -->
+        <div style="position: absolute; bottom: 20px; left: 20px; display: flex; gap: 8px; z-index: 10;">
+          <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">FinTech</span><span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">Real-Time</span>
+        </div>
+      </div>
+      
+      <h3 style="font-size: 22px; font-weight: 700; color: var(--black); margin-bottom: 8px;">DalalStreett</h3>
+      <p style="font-size: 15px; color: var(--gray-500); line-height: 1.6; max-width: 90%;">Live updates on global markets, economy, and cryptocurrency. Fast • Reliable • Real-time</p>
+    </a>
+    
+    <a href="work-kriyadocs.html" class="reveal" style="display: flex; flex-direction: column; cursor: pointer; text-decoration: none;">
+      <div class="grid-img-wrap" style="background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;"></div>
+
+        <!-- Tags Overlay -->
+        <div style="position: absolute; bottom: 20px; left: 20px; display: flex; gap: 8px; z-index: 10;">
+          <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">Mobile App</span><span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">Web App</span>
+        </div>
+      </div>
+      
+      <h3 style="font-size: 22px; font-weight: 700; color: var(--black); margin-bottom: 8px;">KRIYADOCS</h3>
+      <p style="font-size: 15px; color: var(--gray-500); line-height: 1.6; max-width: 90%;">Revitalizing a Document Publishing SaaS Website for Enhanced User Engagement.</p>
+    </a>
+    
+    <a href="work-woo-spaces.html" class="reveal" style="display: flex; flex-direction: column; cursor: pointer; text-decoration: none;">
+      <div class="grid-img-wrap" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;"></div>
+
+        <!-- Tags Overlay -->
+        <div style="position: absolute; bottom: 20px; left: 20px; display: flex; gap: 8px; z-index: 10;">
+          <span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">Mobile App</span><span style="background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); color: #000; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 999px;">Web App</span>
+        </div>
+      </div>
+      
+      <h3 style="font-size: 22px; font-weight: 700; color: var(--black); margin-bottom: 8px;">WOO Spaces</h3>
+      <p style="font-size: 15px; color: var(--gray-500); line-height: 1.6; max-width: 90%;">Building a friendly neighborhood co-working space platform</p>
+    </a>
+    
+
+  </div>
+</section>
+
+<div class="divider"><hr /></div>
+
+<section class="cta-section reveal" id="contact">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="cta-star">✦</div>
+      <div>
+        <div class="cta-text-title">Have a project in mind?</div>
+        <div class="cta-text-sub">We'd love to hear about what you're building.</div>
+      </div>
+    </div>
+    <a href="mailto:hello@nodexi.com" class="btn btn-dark" style="background:#fff; color:#000; font-size:15px; padding:14px 28px;" id="btn-cta-book">
+      Start a Project ↗
+    </a>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer>
+  <div class="footer" id="footer">
+    <div class="footer-logo">Nodexi</div>
+    <div class="footer-copy">© 2025 Nodexi. All rights reserved.</div>
+    <div class="footer-socials">
+      <a href="#" class="footer-social-btn" title="LinkedIn">in</a>
+      <a href="#" class="footer-social-btn" title="GitHub">GH</a>
+      <a href="mailto:hello@nodexi.com" class="footer-social-btn" title="Email">✉</a>
+    </div>
+  </div>
+</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

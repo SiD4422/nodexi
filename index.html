@@ -1,234 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nodexi — Digital Product Engineering</title>
-<link rel="stylesheet" href="css/style.css?v=8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nodexi — We Build Software That Drives Impact</title>
+  <meta name="description" content="Nodexi builds powerful software, AI pipelines, cloud infrastructure and hardware systems for startups and enterprises." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2.1" />
 </head>
 <body>
 
-<div class="noise"></div>
+<!-- ======================== PRELOADER ======================== -->
+<div id="preloader">
+  <div class="preloader-logo">Nodexi</div>
+  <div class="preloader-bar-wrap">
+    <div class="preloader-bar" id="preloader-bar"></div>
+  </div>
+</div>
 
-<header>
-  <nav>
-    <div class="logo"><span class="dot"></span>NODEXI</div>
-    <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#process">Process</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+<!-- ======================== NAVBAR ======================== -->
+
+<nav class="nav" id="navbar">
+  <a href="index.html" class="nav-logo" style="text-decoration:none; text-transform: uppercase; letter-spacing: 4px; font-size: 28px; font-weight: 800;">NODEXI</a>
+  <div class="nav-right" style="display: flex; gap: 16px; align-items: center;">
+    <a href="#contact" class="btn btn-outline" style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 14px 28px; border-radius: 999px; text-decoration: none;" id="btn-book-call">BOOK A CALL ↗</a>
+    <a href="#contact" class="btn btn-dark" style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 14px 28px; border-radius: 999px; text-decoration: none;" id="btn-contact">CONTACT ↗</a>
+    <button class="nav-menu-btn" id="menu-btn" aria-label="Open Menu" style="margin-left: 8px; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-direction: column; gap: 5px;">
+      <span style="width: 18px; height: 1.5px; display: block;"></span>
+      <span style="width: 18px; height: 1.5px; display: block;"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ======================== FULLSCREEN MENU ======================== -->
+<div class="panel-overlay" id="panel-overlay"></div>
+<aside class="full-menu" id="side-panel">
+  <button class="panel-close" id="panel-close" aria-label="Close Menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+  </button>
+  <div class="full-menu-inner">
+    <div class="menu-col">
+      <div class="menu-label"><span class="dot"></span> MENU</div>
+      <nav class="full-nav">
+        <a href="projects.html" class="full-link">WORK <span class="arrow">↗</span></a>
+        <a href="services.html" class="full-link">PROCESS <span class="arrow">↗</span></a>
+        <a href="about.html" class="full-link">ABOUT <span class="arrow">↗</span></a>
+        <a href="insights.html" class="full-link">INSIGHTS <span class="arrow">↗</span></a>
+        <a href="seo.html" class="full-link">SEO <span class="arrow">↗</span></a>
+        <a href="#contact" class="full-link">CONTACT <span class="arrow">↗</span></a>
+      </nav>
     </div>
-    <a href="#contact" class="nav-cta">Start a project →</a>
-    <div class="burger"><span></span><span></span><span></span></div>
-  </nav>
-</header>
+    <div class="menu-col">
+      <div class="menu-label"><span class="dot"></span> WEBFLOW WEBSITE SOLUTIONS</div>
+      <nav class="full-nav">
+        <a href="startups.html" class="full-link">FOR STARTUPS <span class="arrow">↗</span></a>
+        <a href="web3.html" class="full-link">FOR WEB3 <span class="arrow">↗</span></a>
+      </nav>
+      <div class="menu-label" style="margin-top: 60px;"><span class="dot"></span> DESIGN SERVICES</div>
+      <nav class="full-nav">
+        <a href="design.html" class="full-link">PRODUCT DESIGN <span class="arrow">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</aside>
 
-<section class="hero">
-  <div class="orb-field"><div class="orb" id="orb"></div></div>
-  <div class="wrap">
-    <div class="eyebrow"><span class="dash"></span>SOFTWARE & ENGINEERING COMPANY</div>
+<!-- ======================== HERO (MONKS STYLE) ======================== -->
+<section class="monks-hero" id="hero">
+  <!-- Background Video -->
+  <div class="hero-video-wrapper">
+    <video autoplay loop muted playsinline class="hero-video">
+      <source src="genrate_teh_video_Abstract_c.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="monks-hero-content">
+    <h1 class="monks-headline reveal">
+      <span class="line">ENGINEERING</span>
+      <span class="line">AT <span class="accent-glow hover-stroke">SCALE.</span></span>
+    </h1>
     
-    <!-- GSAP Skew-Up Structure -->
-    <div style="overflow: hidden;">
-      <h1 class="skew-up">DIGITAL</h1>
+    <div class="monks-hero-bottom reveal">
+      <div class="monks-subtext">
+        <p>We architect digital infrastructure, AI pipelines, and custom software for ambitious companies.</p>
+      </div>
     </div>
-    <div style="overflow: hidden;">
-      <h1 class="skew-up">IMPACT<span class="out">.</span></h1>
-    </div>
+  </div>
 
-    <div class="hero-sub">
-      <p>From idea to impact, we build scalable software, AI solutions, and digital experiences that help businesses grow, automate, and lead.</p>
-      <a href="#contact" class="nav-cta" style="background:var(--text); color:var(--bg); border:none; padding:14px 24px;">Schedule Consultation ↗</a>
-    </div>
-    <div class="reel">
-      <img src="assets/hero-handshake.png" alt="Digital Engineering">
-      <div class="reel-caption"><span class="rec"></span>SHOWREEL — SELECTED WORK 2026</div>
+  <!-- Infinite Marquee -->
+  <div class="monks-marquee-container">
+    <div class="monks-marquee">
+      <span>WEB DEVELOPMENT ✦ AI AUTOMATION ✦ CLOUD ARCHITECTURE ✦ PRODUCT DESIGN ✦ CYBERSECURITY ✦</span>
+      <span>WEB DEVELOPMENT ✦ AI AUTOMATION ✦ CLOUD ARCHITECTURE ✦ PRODUCT DESIGN ✦ CYBERSECURITY ✦</span>
+      <span>WEB DEVELOPMENT ✦ AI AUTOMATION ✦ CLOUD ARCHITECTURE ✦ PRODUCT DESIGN ✦ CYBERSECURITY ✦</span>
+      <span>WEB DEVELOPMENT ✦ AI AUTOMATION ✦ CLOUD ARCHITECTURE ✦ PRODUCT DESIGN ✦ CYBERSECURITY ✦</span>
     </div>
   </div>
 </section>
 
-<div class="marquee-strip">
-  <div class="marquee-track" id="marquee">
-    <span>BUILT LIKE PRODUCTION. NOT LIKE A DEMO. <b>★</b> REACT <b>★</b> NODE.JS <b>★</b> WEB ASSEMBLY <b>★</b> AWS <b>★</b> GOOGLE CLOUD <b>★</b> AI INTEGRATION <b>★</b></span>
-    <span>BUILT LIKE PRODUCTION. NOT LIKE A DEMO. <b>★</b> REACT <b>★</b> NODE.JS <b>★</b> WEB ASSEMBLY <b>★</b> AWS <b>★</b> GOOGLE CLOUD <b>★</b> AI INTEGRATION <b>★</b></span>
-  </div>
-</div>
-
-<section id="work">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Products we've engineered.</h2>
-      <p>A sample of what we've built end-to-end.</p>
-    </div>
-    <div class="grid" id="grid"></div>
-  </div>
-</section>
-
-<div class="wrap">
-  <div class="stats">
-    <div class="stat"><b>50+</b><span>Projects Shipped</span></div>
-    <div class="stat"><b>100%</b><span>Code Ownership</span></div>
-    <div class="stat"><b>ISO 27001</b><span>Compliant</span></div>
-    <div class="stat"><b>2wk</b><span>Avg. Sprint Cycle</span></div>
-  </div>
-</div>
-
-<section id="feedback">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Why Nodexi?</h2>
-      <p>Trust is engineered, not claimed.</p>
-    </div>
-    <div class="t-wrap">
-      <div class="t-track" id="tTrack"></div>
-      <div class="t-controls">
-        <button id="tPrev">←</button>
-        <button id="tNext">→</button>
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-icon">👥</div>
+        <div>
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">✦</div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">🕐</div>
+        <div>
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Support Available</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">⭐</div>
+        <div>
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="cta" id="contact">
-    <h2>Ready to build something that actually scales?</h2>
-    <a href="mailto:hello@nodexi.com" class="cta-btn">Start your project ↗</a>
+<div class="divider"><hr /></div>
+
+<!-- ======================== FEATURED WORK ======================== -->
+<section class="work-section reveal" id="featured-work">
+  <div class="work-inner">
+    <div class="work-left">
+      <div>
+        <p class="work-eyebrow">Featured Work</p>
+        <h2 class="work-title">Logic Simulator</h2>
+        <p class="work-desc">An interactive logic circuit builder with real-time simulation. Designed for students to visualize, test, and master complex digital logic — entirely in the browser.</p>
+        <div class="work-tags">
+          <span class="work-tag">React</span>
+          <span class="work-tag">TypeScript</span>
+          <span class="work-tag">WebAssembly</span>
+          <span class="work-tag">C++</span>
+        </div>
+        <a href="projects.html" class="work-link">View Case Study ↗</a>
+      </div>
+      <div class="work-nav">
+        <button class="work-nav-btn" id="btn-prev" aria-label="Previous project">‹</button>
+        <button class="work-nav-btn" id="btn-next" aria-label="Next project">›</button>
+      </div>
+    </div>
+    <div class="work-right">
+      <div class="work-mockup-wrap">
+        <div class="work-mockup-main">
+          <img class="work-mockup-img" src="images/multisim-live.png" alt="MultiSym Live Screenshot"
+               onerror="this.style.background='#EDE9FF'; this.style.display='block';" />
+        </div>
+        <div class="work-mockup-phone">
+          <img class="work-mockup-img" src="images/gateonix.png" alt="Gateonix mobile view"
+               onerror="this.style.background='#D8D0FF'; this.style.display='block';" />
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- ======================== CTA BANNER ======================== -->
+<section class="cta-section reveal" id="contact">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="cta-star">✦</div>
+      <div>
+        <div class="cta-text-title">Ready to build something exceptional?</div>
+        <div class="cta-text-sub">Let's turn your ideas into powerful digital products.</div>
+      </div>
+    </div>
+    <a href="mailto:hello@nodexi.com" class="btn btn-dark" style="background:#fff; color:#000; font-size:15px; padding:14px 28px;" id="btn-cta-book">
+      Book a Call ↗
+    </a>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
 
 <footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-col">
-        <h4>NODEXI</h4>
-        <p>Global software engineering & digital product studio.</p>
-        <a href="mailto:hello@nodexi.com">hello@nodexi.com</a>
-      </div>
-      <div class="foot-col">
-        <h4>Studio</h4>
-        <a href="#work">Work</a>
-        <a href="#process">Process</a>
-        <a href="#about">About</a>
-      </div>
-      <div class="foot-col">
-        <h4>Social</h4>
-        <a href="https://www.linkedin.com/company/nodexi" target="_blank">LinkedIn</a>
-        <a href="#">GitHub</a>
-        <a href="#">Twitter</a>
-      </div>
-      <div class="foot-col">
-        <h4>Legal</h4>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 Nodexi. Engineered with precision.</span>
+  <div class="footer" id="footer">
+    <div class="footer-logo">Nodexi</div>
+    <div class="footer-copy">© 2025 Nodexi. All rights reserved.</div>
+    <div class="footer-socials">
+      <a href="#" class="footer-social-btn" title="LinkedIn">in</a>
+      <a href="#" class="footer-social-btn" title="GitHub">GH</a>
+      <a href="mailto:hello@nodexi.com" class="footer-social-btn" title="Email">✉</a>
     </div>
   </div>
 </footer>
 
-<!-- JS Libraries -->
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://unpkg.com/split-type"></script>
 
-<script>
-  // ---- Nodexi Project Data ----
-  const projects = [
-    { name: "Gateonix", tag: "EDUCATION · ENGINEERING", desc: "Advanced Digital Logic and Computing Lab deployed for SRMIST University for building and simulating logic circuits.", img: "assets/gateonix.png", link: "project-gateonix.html" },
-    { name: "MultiSym Live", tag: "ENGINEERING · WEB APP", desc: "Interactive digital-logic circuit simulator for building and testing complex gate-level designs directly in the browser.", img: "assets/multisim-live.png", link: "project-logic-simulator.html" },
-    { name: "Digital_Lab", tag: "EDUCATION · ENGINEERING", desc: "Next-Gen Electric Circuits Lab Simulator. A real-time, interactive environment built for students to design and master complex circuits.", img: "assets/digital-lab.png", link: "project-digital-lab.html" }
-  ];
 
-  const grid = document.getElementById('grid');
-  projects.forEach((proj, i)=>{
-    const hue = (i*47) % 360;
-    const card = document.createElement('a');
-    card.className = 'card';
-    card.href = proj.link;
-    card.style.display = 'block';
-    card.innerHTML = `
-      <div class="thumb">
-        <div class="thumb-grad" style="position:absolute;inset:0;background:linear-gradient(135deg, hsl(${hue} 70% 55% / .5), hsl(${(hue+70)%360} 70% 45% / .5)), #050505;"></div>
-        <img src="${proj.img}" alt="${proj.name}" />
-      </div>
-      <div class="card-body">
-        <div class="tags"><span>${proj.tag}</span></div>
-        <h3>${proj.name}<span class="arrow">↗</span></h3>
-        <p class="desc">${proj.desc}</p>
-      </div>`;
-    grid.appendChild(card);
-  });
+  <!-- Custom Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-follower"></div>
 
-  // reveal on scroll for cards
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:0.15});
-  document.querySelectorAll('.card').forEach(c=>io.observe(c));
-
-  // GSAP Skew-Up Text Reveal (Inspired by thealien.design)
-  const skewTexts = new SplitType('.skew-up', { types: 'chars' });
-  gsap.from(skewTexts.chars, {
-    y: '100%',
-    skewY: 10,
-    opacity: 0,
-    duration: 1.2,
-    ease: "power4.out",
-    stagger: 0.05,
-    delay: 0.2
-  });
-
-  // hero orb follows cursor (subtle)
-  const orb = document.getElementById('orb');
-  window.addEventListener('mousemove', (e)=>{
-    const x = (e.clientX / window.innerWidth - 0.5) * 60;
-    const y = (e.clientY / window.innerHeight - 0.5) * 60;
-    if(orb) orb.style.transform = `translate(${x}px, ${y}px)`;
-  });
-
-  // testimonials (Why Nodexi data)
-  const testimonials = [
-    ["No templated products — every system is architected around your actual requirements.","100% Custom Solutions","Architecture"],
-    ["Systems designed to hold up under real user growth, not just the demo.","Scalable Architecture","Performance"],
-    ["Threat modeling and secure-by-default practices from day one.","Security First","ISO 27001"]
-  ];
-  const tTrack = document.getElementById('tTrack');
-  testimonials.forEach(([quote,name,role])=>{
-    const el = document.createElement('div');
-    el.className = 't-card';
-    el.innerHTML = `<p>"${quote}"</p>
-      <div class="t-foot">
-        <div class="t-avatar"></div>
-        <div><div class="t-name">${name}</div><div class="t-role">${role}</div></div>
-      </div>`;
-    tTrack.appendChild(el);
-  });
-  let tIndex = 0;
-  function renderT(){
-    if(!tTrack) return;
-    tTrack.style.transition = 'transform .5s ease';
-    tTrack.style.transform = `translateX(-${tIndex*100}%)`;
-  }
-  const btnNext = document.getElementById('tNext');
-  const btnPrev = document.getElementById('tPrev');
-  if(btnNext) btnNext.onclick = ()=>{ tIndex = (tIndex+1)%testimonials.length; renderT(); };
-  if(btnPrev) btnPrev.onclick = ()=>{ tIndex = (tIndex-1+testimonials.length)%testimonials.length; renderT(); };
-  setInterval(()=>{ tIndex = (tIndex+1)%testimonials.length; renderT(); }, 6000);
-
-  // Initialize Smooth Scroll (Lenis)
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-  });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-</script>
-
+  <script src="app.js"></script>
 </body>
 </html>
