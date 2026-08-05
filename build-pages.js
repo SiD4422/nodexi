@@ -299,6 +299,20 @@ const projectsData = [
     link: 'https://multisimlivee.netlify.app/'
   },
   {
+    slug: 'vlab',
+    title: 'V-Lab',
+    year: '2026',
+    headline: 'Premium, full-stack virtual laboratory for EEE students.',
+    desc: 'V-Lab is a premium, full-stack virtual laboratory designed specifically for Electrical and Electronics Engineering (EEE) students. It provides an interactive, highly visual environment to explore physical sensors and bridge circuits without physical hardware.',
+    tags: ['EdTech', 'Virtual Lab'],
+    focus: ['Physics Engine', 'Interactive Sandbox', 'Automated Reports'],
+    stylesDesc: 'Featuring a modern, responsive, glassmorphism design system with dark mode. The UI is crafted to prioritize the live physics engine and real-time nodal analysis while keeping the interactive circuit sandbox highly visual and engaging.',
+    colors: ['#1a1025', '#4d9eff', '#0a0a0a'],
+    bg: '#1a1025',
+    img: 'assets/images/projects/vlab.jpg',
+    link: '#'
+  },
+  {
     slug: 'dalalstreett',
     title: 'DalalStreett',
     year: '2026',
