@@ -211,7 +211,7 @@
       <h2 style="font-size: 32px; font-weight: 900; color: var(--black); margin-bottom: 8px; letter-spacing: -0.02em;">Start a Project</h2>
       <p style="font-size: 15px; color: var(--gray-500); margin-bottom: 32px;">Fill out the details below and we'll get back to you within 24 hours to schedule a discovery call.</p>
       
-      <form class="booking-form" id="booking-form" action="https://formspree.io/f/hello" method="POST">
+      <form class="booking-form" id="booking-form" action="https://formspree.io/f/hello" method="POST" enctype="multipart/form-data">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
           <div class="booking-input-group">
             <label>Name</label>
@@ -236,6 +236,11 @@
         <div class="booking-input-group">
           <label>Project Details</label>
           <textarea name="details" rows="4" required placeholder="Tell us about what you're building..."></textarea>
+        </div>
+        
+        <div class="booking-input-group">
+          <label>Attach File (Optional)</label>
+          <input type="file" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.fig">
         </div>
         
         <button type="submit" class="booking-submit">Request Discovery Call ↗</button>
