@@ -280,13 +280,27 @@
             <p style="font-size: 15px; color: var(--gray-500);">All times shown in your local timezone.</p>
           </div>
 
-          <!-- Date Carousel -->
-          <div class="booking-dates" id="booking-dates">
-            <!-- Populated by JS -->
+          <!-- Dark Calendar Widget -->
+          <div class="dark-calendar" id="dark-calendar">
+            <div class="dc-header">
+              <div class="dc-nav" id="dc-prev">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </div>
+              <div id="dc-month-year">Month Year</div>
+              <div class="dc-nav" id="dc-next">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+            </div>
+            <div class="dc-weekdays">
+              <div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div><div>SUN</div>
+            </div>
+            <div class="dc-grid" id="dc-grid">
+              <!-- Populated by JS -->
+            </div>
           </div>
 
           <!-- Time Slots -->
-          <div class="booking-times" id="booking-times" style="display: none; margin-top: 32px;">
+          <div class="booking-times" id="booking-times" style="display: none;">
             <h3 style="font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
               <span>Available Times</span>
               <span id="selected-date-label" style="color: var(--purple); font-size: 14px;"></span>
@@ -321,139 +335,171 @@
 
   <script src="app.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('booking-modal');
-    const overlay = document.getElementById('booking-modal-overlay');
-    const closeBtn = document.getElementById('booking-close');
-    const form = document.getElementById('booking-form');
-    const formContainer = document.getElementById('booking-form-container');
-    const successMsg = document.getElementById('booking-success');
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("booking-modal");
+    const overlay = document.getElementById("booking-modal-overlay");
+    const closeBtn = document.getElementById("booking-close");
+    const form = document.getElementById("booking-form");
+    const formContainer = document.getElementById("booking-form-container");
+    const successMsg = document.getElementById("booking-success");
     
-    const step1 = document.getElementById('booking-step-1');
-    const step2 = document.getElementById('booking-step-2');
-    const btnNext = document.getElementById('btn-next-step');
-    const btnPrev = document.getElementById('btn-prev-step');
-    const btnConfirm = document.getElementById('btn-confirm-booking');
+    const step1 = document.getElementById("booking-step-1");
+    const step2 = document.getElementById("booking-step-2");
+    const btnNext = document.getElementById("btn-next-step");
+    const btnPrev = document.getElementById("btn-prev-step");
+    const btnConfirm = document.getElementById("btn-confirm-booking");
     
-    const dateInput = document.getElementById('booking_date_input');
-    const timeInput = document.getElementById('booking_time_input');
-    const selectionText = document.getElementById('booking-selection');
+    const dateInput = document.getElementById("booking_date_input");
+    const timeInput = document.getElementById("booking_time_input");
+    const selectionText = document.getElementById("booking-selection");
+
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+    let selectedFullDate = null;
 
     if (!modal) return;
 
-    // Open modal
-    document.addEventListener('click', (e) => {
-      const trigger = e.target.closest('a[href^="mailto:"], a[href="#contact"], #btn-book-call, #btn-cta-book');
+    document.addEventListener("click", (e) => {
+      const trigger = e.target.closest("a[href^='mailto:'], a[href='#contact'], #btn-book-call, #btn-cta-book");
       if (trigger) {
         e.preventDefault();
-        modal.classList.add('active');
+        modal.classList.add("active");
       }
     });
 
-    // Close modal
     const closeModal = () => {
-      modal.classList.remove('active');
+      modal.classList.remove("active");
       setTimeout(() => {
-        formContainer.style.display = 'block';
-        successMsg.style.display = 'none';
-        step1.style.display = 'block';
-        step2.style.display = 'none';
+        formContainer.style.display = "block";
+        successMsg.style.display = "none";
+        step1.style.display = "block";
+        step2.style.display = "none";
         form.reset();
-        
-        // Reset selections
-        document.querySelectorAll('.booking-date-card').forEach(c => c.classList.remove('active'));
-        document.getElementById('booking-times').style.display = 'none';
-        dateInput.value = '';
-        timeInput.value = '';
+        document.getElementById("booking-times").style.display = "none";
+        dateInput.value = "";
+        timeInput.value = "";
+        selectedFullDate = null;
         updateConfirmBtn();
       }, 500);
     };
 
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', closeModal);
+    closeBtn.addEventListener("click", closeModal);
+    overlay.addEventListener("click", closeModal);
 
-    // Navigation
-    btnNext.addEventListener('click', () => {
-      // Basic HTML5 validation trigger
+    btnNext.addEventListener("click", () => {
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
-      step1.style.display = 'none';
-      step2.style.display = 'block';
-      generateDates();
+      step1.style.display = "none";
+      step2.style.display = "block";
+      generateCalendar();
     });
     
-    btnPrev.addEventListener('click', () => {
-      step2.style.display = 'none';
-      step1.style.display = 'block';
+    btnPrev.addEventListener("click", () => {
+      step2.style.display = "none";
+      step1.style.display = "block";
     });
 
-    // Generate Dates
-    function generateDates() {
-      const datesContainer = document.getElementById('booking-dates');
-      if (datesContainer.children.length > 0) return; // Already generated
-      
-      const today = new Date();
-      let html = '';
-      
-      // Generate next 14 days, skipping weekends
-      let added = 0;
-      let curr = new Date(today);
-      curr.setDate(curr.getDate() + 1); // Start tomorrow
-      
-      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      
-      while (added < 10) {
-        if (curr.getDay() !== 0 && curr.getDay() !== 6) {
-          const dayName = days[curr.getDay()];
-          const dateNum = curr.getDate();
-          const monthName = months[curr.getMonth()];
-          const fullDateStr = curr.toDateString();
-          
-          html += '<div class="booking-date-card" data-date="' + fullDateStr + '">' +'<div class="day">' + dayName + '</div>' +'<div class="date">' + dateNum + '</div>' +'<div class="day" style="margin-top:2px;">' + monthName + '</div>' +'</div>';
-          added++;
-        }
-        curr.setDate(curr.getDate() + 1);
+    document.getElementById("dc-prev").addEventListener("click", () => {
+      currentMonth--;
+      if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
       }
-      datesContainer.innerHTML = html;
+      generateCalendar();
+    });
+
+    document.getElementById("dc-next").addEventListener("click", () => {
+      currentMonth++;
+      if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+      }
+      generateCalendar();
+    });
+
+    function generateCalendar() {
+      const grid = document.getElementById("dc-grid");
+      const title = document.getElementById("dc-month-year");
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       
-      // Add listeners
-      document.querySelectorAll('.booking-date-card').forEach(card => {
-        card.addEventListener('click', function() {
-          document.querySelectorAll('.booking-date-card').forEach(c => c.classList.remove('active'));
-          this.classList.add('active');
-          dateInput.value = this.getAttribute('data-date');
-          document.getElementById('selected-date-label').textContent = dateInput.value;
+      title.textContent = months[currentMonth] + " " + currentYear;
+      
+      const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
+      
+      // Adjust to Monday start (0=Mon, ..., 6=Sun)
+      let startDay = firstDay - 1;
+      if (startDay === -1) startDay = 6;
+      
+      let html = "";
+      
+      // Prev month faded days
+      for (let i = startDay - 1; i >= 0; i--) {
+        html += "<div class="dc-day faded">" + (daysInPrevMonth - i) + "</div>";
+      }
+      
+      // Current month days
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      
+      for (let i = 1; i <= daysInMonth; i++) {
+        const cellDate = new Date(currentYear, currentMonth, i);
+        const fullDateStr = cellDate.toDateString();
+        
+        let classes = "dc-day current-month";
+        // Fade out past days
+        if (cellDate < today) {
+           classes += " faded";
+        }
+        if (selectedFullDate === fullDateStr) {
+           classes += " active";
+        }
+        
+        html += "<div class="" + classes + "" data-date="" + fullDateStr + "">" + i + "</div>";
+      }
+      
+      // Next month faded days
+      const totalCells = startDay + daysInMonth;
+      const remainingCells = 42 - totalCells; // Fixed 6 rows
+      for (let i = 1; i <= remainingCells; i++) {
+        html += "<div class="dc-day faded">" + i + "</div>";
+      }
+      
+      grid.innerHTML = html;
+      
+      document.querySelectorAll(".dc-day.current-month:not(.faded)").forEach(day => {
+        day.addEventListener("click", function() {
+          document.querySelectorAll(".dc-day").forEach(d => d.classList.remove("active"));
+          this.classList.add("active");
+          selectedFullDate = this.getAttribute("data-date");
+          dateInput.value = selectedFullDate;
+          document.getElementById("selected-date-label").textContent = selectedFullDate;
           
-          // Reset time
-          timeInput.value = '';
+          timeInput.value = "";
           updateConfirmBtn();
-          
-          // Show times
           generateTimes();
-          document.getElementById('booking-times').style.display = 'block';
+          document.getElementById("booking-times").style.display = "block";
         });
       });
     }
 
-    // Generate Times
     function generateTimes() {
-      const grid = document.getElementById('booking-times-grid');
-      const times = ['09:00 AM', '09:30 AM', '10:00 AM', '11:00 AM', '01:00 PM', '02:30 PM', '04:00 PM'];
-      
-      let html = '';
+      const grid = document.getElementById("booking-times-grid");
+      const times = ["09:00 AM", "09:30 AM", "10:00 AM", "11:00 AM", "01:00 PM", "02:30 PM", "04:00 PM"];
+      let html = "";
       times.forEach(t => {
-        html += '<div class="booking-time-pill" data-time="' + t + '">' + t + '</div>';
+        html += "<div class="booking-time-pill" data-time="" + t + "">" + t + "</div>";
       });
       grid.innerHTML = html;
       
-      document.querySelectorAll('.booking-time-pill').forEach(pill => {
-        pill.addEventListener('click', function() {
-          document.querySelectorAll('.booking-time-pill').forEach(p => p.classList.remove('active'));
-          this.classList.add('active');
-          timeInput.value = this.getAttribute('data-time');
+      document.querySelectorAll(".booking-time-pill").forEach(pill => {
+        pill.addEventListener("click", function() {
+          document.querySelectorAll(".booking-time-pill").forEach(p => p.classList.remove("active"));
+          this.classList.add("active");
+          timeInput.value = this.getAttribute("data-time");
           updateConfirmBtn();
         });
       });
@@ -461,49 +507,44 @@
 
     function updateConfirmBtn() {
       if (dateInput.value && timeInput.value) {
-        selectionText.innerHTML = '<span style="color:var(--black);">' + dateInput.value + '</span> at <span style="color:var(--black);">' + timeInput.value + '</span>';
-        btnConfirm.style.opacity = '1';
-        btnConfirm.style.pointerEvents = 'all';
-        btnConfirm.style.background = 'var(--purple)';
+        selectionText.innerHTML = "<span style="color:var(--black);">" + dateInput.value + "</span> at <span style="color:var(--black);">" + timeInput.value + "</span>";
+        btnConfirm.style.opacity = "1";
+        btnConfirm.style.pointerEvents = "all";
+        btnConfirm.style.background = "var(--purple)";
       } else {
-        selectionText.innerHTML = 'No time selected';
-        btnConfirm.style.opacity = '0.5';
-        btnConfirm.style.pointerEvents = 'none';
-        btnConfirm.style.background = 'var(--black)';
+        selectionText.innerHTML = "No time selected";
+        btnConfirm.style.opacity = "0.5";
+        btnConfirm.style.pointerEvents = "none";
+        btnConfirm.style.background = "var(--black)";
       }
     }
 
-    // AJAX Form Submit
-    form.addEventListener('submit', (e) => {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-      
-      btnConfirm.innerHTML = 'Booking...';
-      btnConfirm.style.opacity = '0.7';
-      btnConfirm.style.pointerEvents = 'none';
+      btnConfirm.innerHTML = "Booking...";
+      btnConfirm.style.opacity = "0.7";
+      btnConfirm.style.pointerEvents = "none";
       
       const formData = new FormData(form);
-      
       fetch(form.action, {
         method: "POST",
         body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { "Accept": "application/json" }
       }).then(response => {
         if (response.ok) {
-          formContainer.style.display = 'none';
-          successMsg.style.display = 'block';
+          formContainer.style.display = "none";
+          successMsg.style.display = "block";
         } else {
-          alert('Oops! There was a problem submitting your request.');
-          btnConfirm.innerHTML = 'Confirm Booking ✓';
-          btnConfirm.style.opacity = '1';
-          btnConfirm.style.pointerEvents = 'all';
+          alert("Oops! There was a problem submitting your request.");
+          btnConfirm.innerHTML = "Confirm Booking ✓";
+          btnConfirm.style.opacity = "1";
+          btnConfirm.style.pointerEvents = "all";
         }
       }).catch(error => {
-        alert('Oops! There was a problem submitting your request.');
-        btnConfirm.innerHTML = 'Confirm Booking ✓';
-        btnConfirm.style.opacity = '1';
-        btnConfirm.style.pointerEvents = 'all';
+        alert("Oops! There was a problem submitting your request.");
+        btnConfirm.innerHTML = "Confirm Booking ✓";
+        btnConfirm.style.opacity = "1";
+        btnConfirm.style.pointerEvents = "all";
       });
     });
   });
