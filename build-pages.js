@@ -855,7 +855,7 @@ const aboutBody = `
     <div style="display: flex; align-items: center; gap: 16px; margin-top: 48px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
       <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--purple), #a78bfa); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; color: #fff;">👤</div>
       <div>
-        <div style="font-size: 16px; font-weight: 800; color: #fff;">[Your Name]</div>
+        <div style="font-size: 16px; font-weight: 800; color: #fff;">Siddharth Kumar</div>
         <div style="font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Founder & Lead Engineer</div>
       </div>
     </div>
@@ -879,7 +879,7 @@ const aboutBody = `
       <div style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(123,92,245,0.3); border-radius: 50%; filter: blur(60px);"></div>
       <div style="position: relative; z-index: 2;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 24px;">👤</div>
-        <div style="font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 8px; letter-spacing: -0.02em;">[Your Name]</div>
+        <div style="font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 8px; letter-spacing: -0.02em;">Siddharth Kumar</div>
         <div style="font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Founder & Lead Engineer</div>
         <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">Full-stack engineer and systems architect. Deep background in distributed systems, AI pipelines, and building scalable platforms.</p>
         <div style="display: flex; gap: 8px; margin-top: 24px; flex-wrap: wrap;">
@@ -894,7 +894,7 @@ const aboutBody = `
       <div style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(56,189,248,0.3); border-radius: 50%; filter: blur(60px);"></div>
       <div style="position: relative; z-index: 2;">
         <div style="width: 72px; height: 72px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 24px;">👤</div>
-        <div style="font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 8px; letter-spacing: -0.02em;">[Friend's Name]</div>
+        <div style="font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 8px; letter-spacing: -0.02em;">Aduat Chauhan</div>
         <div style="font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Co-Founder</div>
         <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">Creative problem solver and operations lead. Focused on delivering perfect user experiences and scaling the business.</p>
         <div style="display: flex; gap: 8px; margin-top: 24px; flex-wrap: wrap;">
