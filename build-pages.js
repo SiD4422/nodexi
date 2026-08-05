@@ -316,13 +316,7 @@ const scripts = `  <script src="app.js"></script>
           const monthName = months[curr.getMonth()];
           const fullDateStr = curr.toDateString();
           
-          html += `
-            <div class="booking-date-card" data-date="${fullDateStr}">
-              <div class="day">${dayName}</div>
-              <div class="date">${dateNum}</div>
-              <div class="day" style="margin-top:2px;">${monthName}</div>
-            </div>
-          `;
+          html += '<div class="booking-date-card" data-date="' + fullDateStr + '">' +'<div class="day">' + dayName + '</div>' +'<div class="date">' + dateNum + '</div>' +'<div class="day" style="margin-top:2px;">' + monthName + '</div>' +'</div>';
           added++;
         }
         curr.setDate(curr.getDate() + 1);
@@ -355,7 +349,7 @@ const scripts = `  <script src="app.js"></script>
       
       let html = '';
       times.forEach(t => {
-        html += `<div class="booking-time-pill" data-time="${t}">${t}</div>`;
+        html += '<div class="booking-time-pill" data-time="' + t + '">' + t + '</div>';
       });
       grid.innerHTML = html;
       
@@ -371,7 +365,7 @@ const scripts = `  <script src="app.js"></script>
 
     function updateConfirmBtn() {
       if (dateInput.value && timeInput.value) {
-        selectionText.innerHTML = `<span style="color:var(--black);">${dateInput.value}</span> at <span style="color:var(--black);">${timeInput.value}</span>`;
+        selectionText.innerHTML = '<span style="color:var(--black);">' + dateInput.value + '</span> at <span style="color:var(--black);">' + timeInput.value + '</span>';
         btnConfirm.style.opacity = '1';
         btnConfirm.style.pointerEvents = 'all';
         btnConfirm.style.background = 'var(--purple)';
