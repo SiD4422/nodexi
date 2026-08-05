@@ -257,6 +257,7 @@ const servicesBody = `
 // ============================================================
 const projectsData = [
   {
+    theme: 'light',
     slug: 'kaash',
     title: 'Kaash',
     year: '2026',
@@ -1029,25 +1030,36 @@ fs.writeFileSync(path.join(dir, 'design.html'), buildPage(
   `  <title>Product Design | Nodexi</title>`, 'design', designBody));
 
 // Generate individual Case Study Pages
-const buildCaseStudyBody = (p, nextProject) => `
+const buildCaseStudyBody = (p, nextProject) => {
+  const isLight = p.theme === 'light';
+  const bgColor = isLight ? '#f9f9fb' : '#050505';
+  const textColor = isLight ? '#111111' : '#ffffff';
+  const textMuted = isLight ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.8)';
+  const textSubtle = isLight ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.4)';
+  const borderSubtle = isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.1)';
+  const borderFaint = isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)';
+  const glassBg = isLight ? 'rgba(0, 0, 0, 0.03)' : 'rgba(255, 255, 255, 0.03)';
+  const navBg = isLight ? 'rgba(249,249,251,0.5)' : 'rgba(5,5,5,0.5)';
+  
+  return `
 <!-- Custom CSS for Case Study -->
 <style>
   body {
-    background-color: #050505 !important;
-    color: #ffffff;
+    background-color: ${bgColor} !important;
+    color: ${textColor};
     overflow-x: hidden;
   }
-  /* Navbar adjustments for dark page */
+  /* Navbar adjustments for page */
   #navbar {
-    background: rgba(5, 5, 5, 0.5) !important;
+    background: ${navBg} !important;
     backdrop-filter: blur(24px) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid ${borderFaint};
   }
-  #navbar .nav-logo { color: #fff !important; }
-  #btn-book-call { color: #fff !important; border-color: rgba(255,255,255,0.2) !important; }
-  #btn-contact { background: #fff !important; color: #000 !important; border-color: #fff !important; }
-  #menu-btn { color: #fff !important; }
-  #menu-btn span { background: #fff !important; }
+  #navbar .nav-logo { color: ${textColor} !important; }
+  #btn-book-call { color: ${textColor} !important; border-color: ${borderSubtle} !important; }
+  #btn-contact { background: ${textColor} !important; color: ${bgColor} !important; border-color: ${textColor} !important; }
+  #menu-btn { color: ${textColor} !important; }
+  #menu-btn span { background: ${textColor} !important; }
   
   /* Initial load animations */
   @keyframes fadeUp {
@@ -1066,7 +1078,7 @@ const buildCaseStudyBody = (p, nextProject) => `
     100% { background-position: 200% center; }
   }
   .text-gradient {
-    background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0.4) 25%, #ffffff 50%, rgba(255,255,255,0.4) 75%, #ffffff 100%);
+    background: linear-gradient(90deg, ${textColor} 0%, ${textSubtle} 25%, ${textColor} 50%, ${textSubtle} 75%, ${textColor} 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1075,8 +1087,8 @@ const buildCaseStudyBody = (p, nextProject) => `
   
   /* Glass Card */
   .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: ${glassBg};
+    border: 1px solid ${borderFaint};
     backdrop-filter: blur(20px);
     border-radius: 24px;
     padding: 40px;
@@ -1085,16 +1097,15 @@ const buildCaseStudyBody = (p, nextProject) => `
 
 <!-- Hero Section -->
 <section style="position: relative; min-height: 100vh; display: flex; align-items: center; padding: 160px 5% 80px; overflow: hidden;">
-  <!-- Tamed Glowing Background -->
   <div style="position: absolute; top: -10%; left: -10%; width: clamp(400px, 40vw, 800px); height: clamp(400px, 40vw, 800px); background: ${p.colors[1] || 'var(--purple)'}; filter: blur(120px); opacity: 0.08; border-radius: 50%; z-index: 0; pointer-events: none;"></div>
   <div style="position: absolute; bottom: 0%; right: -5%; width: clamp(300px, 30vw, 600px); height: clamp(300px, 30vw, 600px); background: ${p.colors[2] || 'var(--blue)'}; filter: blur(120px); opacity: 0.08; border-radius: 50%; z-index: 0; pointer-events: none;"></div>
 
   <div style="max-width: var(--max); margin: 0 auto; width: 100%; position: relative; z-index: 1;">
     
     <!-- Meta -->
-    <div class="animate-fade-up" style="display: flex; gap: 16px; align-items: center; font-family: var(--mono); font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.4); margin-bottom: 40px;">
-      <span style="color: #fff; font-weight: 600;">${p.title}</span> 
-      <span style="width: 40px; height: 1px; background: rgba(255,255,255,0.2);"></span>
+    <div class="animate-fade-up" style="display: flex; gap: 16px; align-items: center; font-family: var(--mono); font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: ${textSubtle}; margin-bottom: 40px;">
+      <span style="color: ${textColor}; font-weight: 600;">${p.title}</span> 
+      <span style="width: 40px; height: 1px; background: ${borderSubtle};"></span>
       <span>${p.year}</span>
     </div>
 
@@ -1106,19 +1117,19 @@ const buildCaseStudyBody = (p, nextProject) => `
     </div>
 
     <!-- 2 Column Layout (Description + Focus) -->
-    <div class="reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 60px; margin-bottom: 80px;">
+    <div class="reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; border-top: 1px solid ${borderSubtle}; padding-top: 60px; margin-bottom: 80px;">
       <!-- Left: Description -->
       <div>
-        <p style="font-size: 20px; color: rgba(255,255,255,0.8); line-height: 1.6; font-weight: 300;">
+        <p style="font-size: 20px; color: ${textMuted}; line-height: 1.6; font-weight: 300;">
           ${p.desc}
         </p>
       </div>
       
       <!-- Right: Project Focus -->
       <div>
-        <h4 style="font-size: 12px; font-family: var(--mono); font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px;">Project Focus</h4>
+        <h4 style="font-size: 12px; font-family: var(--mono); font-weight: 600; color: ${textSubtle}; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px;">Project Focus</h4>
         <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-          ${p.focus.map(tag => `<span style="font-size: 12px; font-weight: 600; color: #fff; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; padding: 10px 24px; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,1)'; this.style.color='#000'" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff'">${tag}</span>`).join('')}
+          ${p.focus.map(tag => `<span style="font-size: 12px; font-weight: 600; color: ${textColor}; background: ${borderFaint}; border: 1px solid ${borderSubtle}; border-radius: 999px; padding: 10px 24px; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.background='${textColor}'; this.style.color='${bgColor}'" onmouseout="this.style.background='${borderFaint}'; this.style.color='${textColor}'">${tag}</span>`).join('')}
         </div>
       </div>
     </div>
@@ -1127,9 +1138,9 @@ const buildCaseStudyBody = (p, nextProject) => `
 
 <!-- Immersive Project Showcase -->
 <section style="max-width: 1400px; margin: 0 auto 160px; padding: 0 5%; position: relative; z-index: 2;">
-  <div class="reveal" style="width: 100%; border-radius: 32px; overflow: hidden; background: ${p.bg}; position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05);">
+  <div class="reveal" style="width: 100%; border-radius: 32px; overflow: hidden; background: ${p.bg}; position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.5); border: 1px solid ${borderFaint};">
      <!-- Subtle inner glow -->
-     <div style="position: absolute; inset: 0; box-shadow: inset 0 0 100px rgba(255,255,255,0.05); pointer-events: none; z-index: 2;"></div>
+     <div style="position: absolute; inset: 0; box-shadow: inset 0 0 100px ${borderFaint}; pointer-events: none; z-index: 2;"></div>
      
      <img src="${p.img}" alt="${p.title}" style="width: 100%; height: auto; display: block; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
   </div>
@@ -1140,19 +1151,19 @@ const buildCaseStudyBody = (p, nextProject) => `
   <div class="glass-card reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 80px;">
     
     <div>
-      <h3 style="font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 24px; letter-spacing: -0.02em;">Design Language</h3>
-      <p style="font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.8; font-weight: 300;">
+      <h3 style="font-size: 28px; font-weight: 800; color: ${textColor}; margin-bottom: 24px; letter-spacing: -0.02em;">Design Language</h3>
+      <p style="font-size: 16px; color: ${textMuted}; line-height: 1.8; font-weight: 300;">
         ${p.stylesDesc}
       </p>
     </div>
 
     <div>
-      <h3 style="font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 32px; letter-spacing: -0.02em;">Color Palette</h3>
+      <h3 style="font-size: 28px; font-weight: 800; color: ${textColor}; margin-bottom: 32px; letter-spacing: -0.02em;">Color Palette</h3>
       <div style="display: flex; gap: 24px; flex-wrap: wrap;">
         ${p.colors.map(color => `
           <div style="display: flex; flex-direction: column; gap: 16px; align-items: center; cursor: pointer;" onclick="navigator.clipboard.writeText('${color}'); alert('Copied ${color} to clipboard!');">
-            <div style="width: 80px; height: 80px; border-radius: 24px; background: ${color}; box-shadow: 0 10px 30px ${color}40, inset 0 0 0 1px rgba(255,255,255,0.1); transform: rotate(-5deg); transition: transform 0.4s ease;" onmouseover="this.style.transform='rotate(0deg) scale(1.1)'" onmouseout="this.style.transform='rotate(-5deg) scale(1)'"></div>
-            <span style="font-size: 12px; font-family: var(--mono); color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 2px;">${color}</span>
+            <div style="width: 80px; height: 80px; border-radius: 24px; background: ${color}; box-shadow: 0 10px 30px ${color}40, inset 0 0 0 1px ${borderSubtle}; transform: rotate(-5deg); transition: transform 0.4s ease;" onmouseover="this.style.transform='rotate(0deg) scale(1.1)'" onmouseout="this.style.transform='rotate(-5deg) scale(1)'"></div>
+            <span style="font-size: 12px; font-family: var(--mono); color: ${textSubtle}; text-transform: uppercase; letter-spacing: 2px;">${color}</span>
           </div>
         `).join('')}
       </div>
@@ -1163,7 +1174,7 @@ const buildCaseStudyBody = (p, nextProject) => `
 
 ${p.link !== '#' ? `
 <section style="text-align: center; margin-bottom: 160px; position: relative; z-index: 2;">
-  <a href="${p.link}" target="_blank" class="btn reveal" style="background: #fff; color: #000; font-size: 16px; font-weight: 800; padding: 24px 56px; border-radius: 999px; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; display: inline-flex; align-items: center; gap: 16px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 40px rgba(255,255,255,0.1);" onmouseover="this.style.transform='translateY(-8px) scale(1.02)'; this.style.boxShadow='0 30px 60px rgba(255,255,255,0.2)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 20px 40px rgba(255,255,255,0.1)'">
+  <a href="${p.link}" target="_blank" class="btn reveal" style="background: ${textColor}; color: ${bgColor}; font-size: 16px; font-weight: 800; padding: 24px 56px; border-radius: 999px; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; display: inline-flex; align-items: center; gap: 16px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 40px ${borderSubtle};" onmouseover="this.style.transform='translateY(-8px) scale(1.02)'; this.style.boxShadow='0 30px 60px ${borderSubtle}'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 20px 40px ${borderSubtle}'">
     Explore Live Platform 
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>
@@ -1171,12 +1182,13 @@ ${p.link !== '#' ? `
 ` : ''}
 
 <!-- Next Project Footer -->
-<a href="work-${nextProject.slug}.html" class="reveal" style="display: block; width: 100%; padding: 120px 5%; text-align: center; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); text-decoration: none; transition: background 0.4s ease;" onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background='rgba(255,255,255,0.02)'">
-  <p style="font-size: 14px; font-family: var(--mono); color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 24px;">Next Case Study</p>
-  <h2 style="font-size: clamp(40px, 6vw, 80px); font-weight: 900; color: #fff; letter-spacing: -0.02em; margin: 0;">${nextProject.title} &rarr;</h2>
+<a href="work-${nextProject.slug}.html" class="reveal" style="display: block; width: 100%; padding: 120px 5%; text-align: center; background: ${glassBg}; border-top: 1px solid ${borderFaint}; text-decoration: none; transition: background 0.4s ease;" onmouseover="this.style.background='${borderFaint}'" onmouseout="this.style.background='${glassBg}'">
+  <p style="font-size: 14px; font-family: var(--mono); color: ${textSubtle}; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 24px;">Next Case Study</p>
+  <h2 style="font-size: clamp(40px, 6vw, 80px); font-weight: 900; color: ${textColor}; letter-spacing: -0.02em; margin: 0;">${nextProject.title} &rarr;</h2>
 </a>
 
 `;
+};
 
 projectsData.forEach((p, index) => {
   const nextProject = projectsData[(index + 1) % projectsData.length];
