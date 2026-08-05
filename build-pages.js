@@ -282,7 +282,7 @@ const projectsData = [
     colors: ['#0c0716', '#7b5cf5', '#3b28cc'],
     bg: '#0c0716',
     img: 'assets/images/projects/digital_lab.jpg',
-    link: '#'
+    link: 'https://electric-circuits-lab-personal.netlify.app/'
   },
   {
     slug: 'multisym',
