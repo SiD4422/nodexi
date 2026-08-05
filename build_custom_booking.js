@@ -1,207 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nodexi — We Build Software That Drives Impact</title>
-  <meta name="description" content="Nodexi builds powerful software, AI pipelines, cloud infrastructure and hardware systems for startups and enterprises." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2.1" />
-</head>
-<body>
+const fs = require('fs');
 
-<!-- ======================== PRELOADER ======================== -->
-<div id="preloader">
-  <div class="preloader-logo">Nodexi</div>
-  <div class="preloader-bar-wrap">
-    <div class="preloader-bar" id="preloader-bar"></div>
-  </div>
-</div>
+// 1. UPDATE CSS
+const cssPath = 'style.css';
+let css = fs.readFileSync(cssPath, 'utf8');
 
-<!-- ======================== NAVBAR ======================== -->
+const newCss = `
+/* ============================================================ */
+/* CUSTOM BOOKING SYSTEM */
+/* ============================================================ */
+.booking-dates {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.booking-dates::-webkit-scrollbar {
+  height: 6px;
+}
+.booking-dates::-webkit-scrollbar-thumb {
+  background: var(--gray-200);
+  border-radius: 999px;
+}
+.booking-date-card {
+  flex: 0 0 calc(20% - 12px);
+  min-width: 80px;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.booking-date-card:hover {
+  border-color: var(--purple);
+  background: rgba(123,92,245,0.02);
+}
+.booking-date-card.active {
+  background: var(--purple);
+  border-color: var(--purple);
+}
+.booking-date-card .day {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--gray-500);
+}
+.booking-date-card.active .day {
+  color: rgba(255,255,255,0.8);
+}
+.booking-date-card .date {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--black);
+}
+.booking-date-card.active .date {
+  color: #fff;
+}
 
-<nav class="nav" id="navbar">
-  <a href="index.html" class="nav-logo" style="text-decoration:none; text-transform: uppercase; letter-spacing: 4px; font-size: 28px; font-weight: 800;">NODEXI</a>
-  <div class="nav-right" style="display: flex; gap: 16px; align-items: center;">
-    <a href="#contact" class="btn btn-outline" style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 14px 28px; border-radius: 999px; text-decoration: none;" id="btn-book-call">BOOK A CALL ↗</a>
-    <a href="#contact" class="btn btn-dark" style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 14px 28px; border-radius: 999px; text-decoration: none;" id="btn-contact">CONTACT ↗</a>
-    <button class="nav-menu-btn" id="menu-btn" aria-label="Open Menu" style="margin-left: 8px; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-direction: column; gap: 5px;">
-      <span style="width: 18px; height: 1.5px; display: block;"></span>
-      <span style="width: 18px; height: 1.5px; display: block;"></span>
-    </button>
-  </div>
-</nav>
+.booking-times-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+}
+.booking-time-pill {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.booking-time-pill:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+  background: rgba(123,92,245,0.02);
+}
+.booking-time-pill.active {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: #fff;
+}
+`;
 
-<!-- ======================== FULLSCREEN MENU ======================== -->
-<div class="panel-overlay" id="panel-overlay"></div>
-<aside class="full-menu" id="side-panel">
-  <button class="panel-close" id="panel-close" aria-label="Close Menu">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"></path></svg>
-  </button>
-  <div class="full-menu-inner">
-    <div class="menu-col">
-      <div class="menu-label"><span class="dot"></span> MENU</div>
-      <nav class="full-nav">
-        <a href="projects.html" class="full-link">WORK <span class="arrow">↗</span></a>
-        <a href="services.html" class="full-link">PROCESS <span class="arrow">↗</span></a>
-        <a href="about.html" class="full-link">ABOUT <span class="arrow">↗</span></a>
-        <a href="insights.html" class="full-link">INSIGHTS <span class="arrow">↗</span></a>
-        <a href="seo.html" class="full-link">SEO <span class="arrow">↗</span></a>
-        <a href="#contact" class="full-link">CONTACT <span class="arrow">↗</span></a>
-      </nav>
-    </div>
-    <div class="menu-col">
-      <div class="menu-label"><span class="dot"></span> WEBFLOW WEBSITE SOLUTIONS</div>
-      <nav class="full-nav">
-        <a href="startups.html" class="full-link">FOR STARTUPS <span class="arrow">↗</span></a>
-        <a href="web3.html" class="full-link">FOR WEB3 <span class="arrow">↗</span></a>
-      </nav>
-      <div class="menu-label" style="margin-top: 60px;"><span class="dot"></span> DESIGN SERVICES</div>
-      <nav class="full-nav">
-        <a href="design.html" class="full-link">PRODUCT DESIGN <span class="arrow">↗</span></a>
-      </nav>
-    </div>
-  </div>
-</aside>
+if (!css.includes('.booking-date-card')) {
+  fs.writeFileSync(cssPath, css + '\n' + newCss);
+}
 
-<!-- ======================== HERO (MONKS STYLE) ======================== -->
-<section class="monks-hero" id="hero">
-  <!-- Background Video -->
-  <div class="hero-video-wrapper">
-    <video autoplay loop muted playsinline class="hero-video">
-      <source src="genrate_teh_video_Abstract_c.mp4" type="video/mp4">
-    </video>
-    <div class="hero-video-overlay"></div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="monks-hero-content">
-    <h1 class="monks-headline reveal">
-      <span class="line">ENGINEERING</span>
-      <span class="line">AT <span class="accent-glow hover-stroke">SCALE.</span></span>
-    </h1>
-    
-    <div class="monks-hero-bottom reveal">
-      <div class="monks-subtext">
-        <p>We architect digital infrastructure, AI pipelines, and custom software for ambitious companies.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Infinite Marquee -->
-  <div class="monks-marquee-container">
-    <div class="monks-marquee">
-      <span>WEB DEVELOPMENT ✦ AI AUTOMATION ✦ CLOUD ARCHITECTURE ✦ PRODUCT DESIGN ✦ CYBERSECURITY ✦</span>
-      <span>WEB DEVELOPMENT ✦ AI AUTOMATION ✦ CLOUD ARCHITECTURE ✦ PRODUCT DESIGN ✦ CYBERSECURITY ✦</span>
-      <span>WEB DEVELOPMENT ✦ AI AUTOMATION ✦ CLOUD ARCHITECTURE ✦ PRODUCT DESIGN ✦ CYBERSECURITY ✦</span>
-      <span>WEB DEVELOPMENT ✦ AI AUTOMATION ✦ CLOUD ARCHITECTURE ✦ PRODUCT DESIGN ✦ CYBERSECURITY ✦</span>
-    </div>
-  </div>
-</section>
-
-  <!-- Stats Bar -->
-  <div class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat-item">
-        <div class="stat-icon">👥</div>
-        <div>
-          <div class="stat-num">15+</div>
-          <div class="stat-label">Projects Delivered</div>
-        </div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon">✦</div>
-        <div>
-          <div class="stat-num">100%</div>
-          <div class="stat-label">Client Satisfaction</div>
-        </div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon">🕐</div>
-        <div>
-          <div class="stat-num">24/7</div>
-          <div class="stat-label">Support Available</div>
-        </div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon">⭐</div>
-        <div>
-          <div class="stat-num">3+</div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"><hr /></div>
-
-<!-- ======================== FEATURED WORK ======================== -->
-<section class="work-section reveal" id="featured-work">
-  <div class="work-inner">
-    <div class="work-left">
-      <div>
-        <p class="work-eyebrow">Featured Work</p>
-        <h2 class="work-title">Kaash</h2>
-        <p class="work-desc">A safe space for your mind and heart. Built for the moments when thoughts feel too heavy to carry alone. No names, no pressure, just honesty.</p>
-        <div class="work-tags">
-          <span class="work-tag">React</span>
-          <span class="work-tag">Mental Wellness</span>
-          <span class="work-tag">UI/UX</span>
-        </div>
-        <a href="projects.html" class="work-link">View Case Study ↗</a>
-      </div>
-      <div class="work-nav">
-        <button class="work-nav-btn" id="btn-prev" aria-label="Previous project">‹</button>
-        <button class="work-nav-btn" id="btn-next" aria-label="Next project">›</button>
-      </div>
-    </div>
-    <div class="work-right">
-      <div class="work-mockup-wrap">
-        <div class="work-mockup-main">
-          <img class="work-mockup-img" src="images/kaash.png" alt="Kaash Screenshot"
-               onerror="this.style.background='#F8F5FF'; this.style.display='block';" />
-        </div>
-        <div class="work-mockup-phone">
-          <img class="work-mockup-img" src="images/kaash.png" alt="Kaash mobile view"
-               onerror="this.style.background='#F8F5FF'; this.style.display='block';" />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== CTA BANNER ======================== -->
-<section class="cta-section reveal" id="contact">
-  <div class="cta-inner">
-    <div class="cta-left">
-      <div class="cta-star">✦</div>
-      <div>
-        <div class="cta-text-title">Ready to build something exceptional?</div>
-        <div class="cta-text-sub">Let's turn your ideas into powerful digital products.</div>
-      </div>
-    </div>
-    <a href="mailto:hello@nodexi.com" class="btn btn-dark" style="background:#fff; color:#000; font-size:15px; padding:14px 28px;" id="btn-cta-book">
-      Book a Call ↗
-    </a>
-  </div>
-</section>
-
-<!-- ======================== FOOTER ======================== -->
-
-<footer>
-  <div class="footer" id="footer">
-    <div class="footer-logo">Nodexi</div>
-    <div class="footer-copy">© 2025 Nodexi. All rights reserved.</div>
-    <div class="footer-socials">
-      <a href="#" class="footer-social-btn" title="LinkedIn">in</a>
-      <a href="#" class="footer-social-btn" title="GitHub">GH</a>
-      <a href="mailto:hello@nodexi.com" class="footer-social-btn" title="Email">✉</a>
-    </div>
-  </div>
-
+// 2. MODAL HTML
+const newModalHtml = `
 <div class="booking-modal" id="booking-modal">
   <div class="booking-modal-overlay" id="booking-modal-overlay"></div>
   <div class="booking-modal-content">
@@ -355,17 +250,10 @@
     
   </div>
 </div>
+`;
 
-</footer>
-
-
-
-  <!-- Custom Cursor -->
-  <div id="cursor-dot"></div>
-  <div id="cursor-follower"></div>
-
-  <script src="app.js"></script>
-
+// 3. JS SCRIPT
+const scriptHtml = `
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('booking-modal');
@@ -458,13 +346,13 @@
           const monthName = months[curr.getMonth()];
           const fullDateStr = curr.toDateString();
           
-          html += `
-            <div class="booking-date-card" data-date="${fullDateStr}">
-              <div class="day">${dayName}</div>
-              <div class="date">${dateNum}</div>
-              <div class="day" style="margin-top:2px;">${monthName}</div>
+          html += \`
+            <div class="booking-date-card" data-date="\${fullDateStr}">
+              <div class="day">\${dayName}</div>
+              <div class="date">\${dateNum}</div>
+              <div class="day" style="margin-top:2px;">\${monthName}</div>
             </div>
-          `;
+          \`;
           added++;
         }
         curr.setDate(curr.getDate() + 1);
@@ -497,7 +385,7 @@
       
       let html = '';
       times.forEach(t => {
-        html += `<div class="booking-time-pill" data-time="${t}">${t}</div>`;
+        html += \`<div class="booking-time-pill" data-time="\${t}">\${t}</div>\`;
       });
       grid.innerHTML = html;
       
@@ -513,7 +401,7 @@
 
     function updateConfirmBtn() {
       if (dateInput.value && timeInput.value) {
-        selectionText.innerHTML = `<span style="color:var(--black);">${dateInput.value}</span> at <span style="color:var(--black);">${timeInput.value}</span>`;
+        selectionText.innerHTML = \`<span style="color:var(--black);">\${dateInput.value}</span> at <span style="color:var(--black);">\${timeInput.value}</span>\`;
         btnConfirm.style.opacity = '1';
         btnConfirm.style.pointerEvents = 'all';
         btnConfirm.style.background = 'var(--purple)';
@@ -560,6 +448,31 @@
     });
   });
 </script>
+`;
 
-</body>
-</html>
+// REPLACE FUNCTION
+function replaceModalAndScript(filePath) {
+  let content = fs.readFileSync(filePath, 'utf8');
+  
+  // Replace HTML modal
+  const modalRegex = /<div class="booking-modal" id="booking-modal">[\s\S]*?<!-- STEP 3: SUCCESS -->[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/;
+  const modalRegexOld = /<div class="booking-modal" id="booking-modal">[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/;
+  
+  if (modalRegex.test(content)) {
+      content = content.replace(modalRegex, newModalHtml + '</div>\n</div>\n</div>'); // adjust closing tags if needed
+  } else if (modalRegexOld.test(content)) {
+      content = content.replace(modalRegexOld, newModalHtml.trim());
+  }
+  
+  // Replace script
+  const scriptRegex = /<script>\s*document\.addEventListener\('DOMContentLoaded', \(\) => {[\s\S]*?const modal = document\.getElementById\('booking-modal'\);[\s\S]*?<\/script>/;
+  if (scriptRegex.test(content)) {
+      content = content.replace(scriptRegex, scriptHtml.trim());
+  }
+
+  fs.writeFileSync(filePath, content);
+  console.log('Updated Custom Booking System in', filePath);
+}
+
+replaceModalAndScript('index.html');
+replaceModalAndScript('build-pages.js');

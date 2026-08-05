@@ -1412,3 +1412,89 @@
   width: 1.25rem;
   height: 1.25rem;
 }
+
+
+/* ============================================================ */
+/* CUSTOM BOOKING SYSTEM */
+/* ============================================================ */
+.booking-dates {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.booking-dates::-webkit-scrollbar {
+  height: 6px;
+}
+.booking-dates::-webkit-scrollbar-thumb {
+  background: var(--gray-200);
+  border-radius: 999px;
+}
+.booking-date-card {
+  flex: 0 0 calc(20% - 12px);
+  min-width: 80px;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.booking-date-card:hover {
+  border-color: var(--purple);
+  background: rgba(123,92,245,0.02);
+}
+.booking-date-card.active {
+  background: var(--purple);
+  border-color: var(--purple);
+}
+.booking-date-card .day {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--gray-500);
+}
+.booking-date-card.active .day {
+  color: rgba(255,255,255,0.8);
+}
+.booking-date-card .date {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--black);
+}
+.booking-date-card.active .date {
+  color: #fff;
+}
+
+.booking-times-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+}
+.booking-time-pill {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.booking-time-pill:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+  background: rgba(123,92,245,0.02);
+}
+.booking-time-pill.active {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: #fff;
+}
