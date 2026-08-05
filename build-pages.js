@@ -296,7 +296,7 @@ const scripts = `  <script src="app.js"></script>
     // Generate Dates
     function generateDates() {
       const datesContainer = document.getElementById('booking-dates');
-      if (datesContainer.innerHTML.trim() !== '') return; // Already generated
+      if (datesContainer.children.length > 0) return; // Already generated
       
       const today = new Date();
       let html = '';
