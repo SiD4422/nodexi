@@ -257,6 +257,20 @@ const servicesBody = `
 // ============================================================
 const projectsData = [
   {
+    slug: 'kaash',
+    title: 'Kaash',
+    year: '2026',
+    headline: 'A place to breathe. We are here to listen. No judgment. No pressure.',
+    desc: `Kaash started with the quiet, suffocating weight of having something on your mind and no one safe to say it to. Built for the moments when thoughts feel too heavy to carry alone.<br><br><b>Our Mission:</b> To create a safe, judgment-free space where people can express themselves freely and remind them they are not alone.<br><br><b>What We Believe:</b><br>01. Listening is enough.<br>02. Silence has a cost.<br>03. Anonymity gives freedom.<br>04. Everyone deserves this.`,
+    tags: ['Health & Wellness', 'Mental Health'],
+    focus: ['Anonymous Space', 'Privacy First', 'UI/UX Design'],
+    stylesDesc: `A soothing, light aesthetic featuring soft purples, clean whites, and gentle gradients to evoke calmness and safety. The design prioritizes mental wellness by reducing visual noise and creating a serene, judgment-free digital space. "Sometimes, all we need is to be heard."`,
+    colors: ['#F8F5FF', '#8A63F7', '#FFFFFF'],
+    bg: '#F8F5FF',
+    img: 'assets/images/projects/kaash.png',
+    link: '#'
+  },
+  {
     slug: 'gateonix',
     title: 'Gateonix',
     year: '2026',
