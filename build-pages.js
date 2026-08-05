@@ -296,7 +296,7 @@ const projectsData = [
     colors: ['#0a1a11', '#14cc60', '#ffffff'],
     bg: '#0a1a11',
     img: 'assets/images/projects/multisym_live.jpg',
-    link: '#'
+    link: 'https://multisimlivee.netlify.app/'
   },
   {
     slug: 'dalalstreett',
