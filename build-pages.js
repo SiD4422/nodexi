@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const dir = 'C:/Users/spart/Desktop/startUP/fresh test';
+const dir = '.';
 
 // ============================================================
 // SHARED HTML CHUNKS
