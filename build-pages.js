@@ -172,7 +172,7 @@ const footer = `<!-- ======================== FOOTER ======================== --
     </div>
     
     
-    <div class="booking-success" id="booking-success" style="padding: 0; display: none;">
+    <div class="booking-success" id="booking-success" style="padding: 0;">
       <div style="text-align: center; margin-bottom: 24px; padding-top: 24px;">
         <div class="booking-success-icon" style="font-size: 48px; margin-bottom: 16px;">✨</div>
         <h2 style="font-size: 28px; font-weight: 900; color: var(--black); margin-bottom: 8px; letter-spacing: -0.02em;">Details Received!</h2>
