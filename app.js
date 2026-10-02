@@ -168,11 +168,11 @@ const featuredProjects = [
     img: "images/digital_lab.jpg"
   },
   {
-    title: "MultiSym Live",
-    desc: "Interactive digital-logic circuit simulator for building and testing gate-level designs in the browser. Engineered entirely from scratch without physics engines.",
-    tags: ["Logic Gates", "Simulation", "Real-Time"],
-    link: "work-multisym.html",
-    img: "images/multisym_live.jpg"
+    title: "V-Lab",
+    desc: "Premium, full-stack virtual laboratory designed for Electrical and Electronics Engineering (EEE) students. Explore sensors and bridge circuits interactively.",
+    tags: ["Virtual Lab", "Simulation", "EdTech"],
+    link: "work-vlab.html",
+    img: "images/vlab.jpg"
   }
 ];
 
@@ -233,4 +233,5 @@ if (sliderPrev && sliderNext) {
   const p = document.getElementById("preloader");
   if (p) p.style.display = "none";
 }
+
 
