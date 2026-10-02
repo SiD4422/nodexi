@@ -9,10 +9,10 @@ try {
 
     // Slide up on initial load
     if (document.readyState === 'complete') {
-      setTimeout(() => { preloader.classList.add("slide-out"); preloader.style.display="none"; }, 600);
+      setTimeout(() => { preloader.classList.add("slide-out"); preloader.style.display="none"; }, 50);
     } else {
       window.addEventListener("load", () => {
-        setTimeout(() => { preloader.classList.add("slide-out"); preloader.style.display="none"; }, 600);
+        setTimeout(() => { preloader.classList.add("slide-out"); preloader.style.display="none"; }, 50);
       });
     }
     
