@@ -676,10 +676,7 @@
       gap: 6px;
       cursor: pointer;
     }
-    .work-right {
-      position: relative;
-      overflow: hidden;
-      background: transparent;
+    .work-right { position: relative; overflow: hidden; background: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1593,6 +1590,7 @@
   color: #fff;
   box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
 }
+
 
 
 
