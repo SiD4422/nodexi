@@ -149,6 +149,83 @@ document.addEventListener('keydown', (e) => {
 
 
 
+// =============================================
+// FEATURED WORK SLIDER
+// =============================================
+const featuredProjects = [
+  {
+    title: "NodeSim",
+    desc: "Professional circuit simulation, directly in your browser. Powered by ngspice WASM. No installation. No license headache. Just simulate.",
+    tags: ["Simulations", "Hardware Logic", "EdTech"],
+    link: "work-nodesim.html",
+    img: "images/nodesim.png"
+  },
+  {
+    title: "Digital Lab",
+    desc: "Next-Gen Electric Circuits Lab Simulator. A real-time, interactive simulation environment built specifically for students to design, visualize, and master complex circuits.",
+    tags: ["Circuits", "Interactive", "EdTech"],
+    link: "work-digital-lab.html",
+    img: "images/digital_lab.jpg"
+  },
+  {
+    title: "MultiSym Live",
+    desc: "Interactive digital-logic circuit simulator for building and testing gate-level designs in the browser. Engineered entirely from scratch without physics engines.",
+    tags: ["Logic Gates", "Simulation", "Real-Time"],
+    link: "work-multisym.html",
+    img: "images/multisym_live.jpg"
+  }
+];
+
+let currentProjectIdx = 0;
+const titleEl = document.querySelector('.work-title');
+const descEl = document.querySelector('.work-desc');
+const tagsEl = document.querySelector('.work-tags');
+const linkEl = document.querySelector('.work-link');
+const imgEl = document.querySelector('.work-mockup-img');
+const sliderPrev = document.getElementById('btn-prev');
+const sliderNext = document.getElementById('btn-next');
+
+function updateSlider(index) {
+  if (!titleEl) return;
+  const p = featuredProjects[index];
+  
+  const leftSide = document.querySelector('.work-left > div:first-child');
+  const rightSide = document.getElementById('nodesim-demo-container');
+  
+  if (leftSide) leftSide.style.transition = 'opacity 0.2s ease';
+  if (rightSide) rightSide.style.transition = 'opacity 0.2s ease';
+  if (leftSide) leftSide.style.opacity = 0;
+  if (rightSide) rightSide.style.opacity = 0;
+  
+  setTimeout(() => {
+    titleEl.textContent = p.title;
+    descEl.textContent = p.desc;
+    if (linkEl) linkEl.href = p.link;
+    if (imgEl) {
+      imgEl.src = p.img;
+      imgEl.alt = p.title + " Screenshot";
+    }
+    
+    if (tagsEl) {
+      tagsEl.innerHTML = p.tags.map(t => "<span class=\"work-tag\">" + t + "</span>").join('');
+    }
+    
+    if (leftSide) leftSide.style.opacity = 1;
+    if (rightSide) rightSide.style.opacity = 1;
+  }, 200);
+}
+
+if (sliderPrev && sliderNext) {
+  sliderPrev.addEventListener('click', () => {
+    currentProjectIdx = (currentProjectIdx - 1 + featuredProjects.length) % featuredProjects.length;
+    updateSlider(currentProjectIdx);
+  });
+  
+  sliderNext.addEventListener('click', () => {
+    currentProjectIdx = (currentProjectIdx + 1) % featuredProjects.length;
+    updateSlider(currentProjectIdx);
+  });
+}
 } catch (e) {
   console.error(e);
   alert("Error in app.js: " + e.message);
@@ -156,3 +233,4 @@ document.addEventListener('keydown', (e) => {
   const p = document.getElementById("preloader");
   if (p) p.style.display = "none";
 }
+
